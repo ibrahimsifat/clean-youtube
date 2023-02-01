@@ -1,6 +1,7 @@
 import { useStoreActions } from "easy-peasy";
 import { useEffect } from "react";
 import "./App.css";
+import Home from "./pages/Home/Home";
 
 function App() {
   const playlistID = "PL_XxuZqN0xVBPhR5bjBIKyBjTo8pK99gN";
@@ -9,7 +10,11 @@ function App() {
     playlist.getPlaylists(playlistID);
   }, []);
   console.log(playlist);
-  return <div>hello clean youtube</div>;
+  return (
+    <div>
+      <Home />
+    </div>
+  );
 }
 
 export default App;
