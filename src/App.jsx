@@ -10,6 +10,7 @@ function App() {
     playlist.getPlaylists(playlistID);
   }, []);
   console.log(playlist);
+
   return (
     <div>
       <Home />
