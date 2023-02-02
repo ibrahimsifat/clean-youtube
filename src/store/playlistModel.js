@@ -16,21 +16,27 @@ const playlistModel = persist({
   addPlaylist: action((state, payload) => {
     state.data[payload.playlistId] = payload;
   }),
-  getPlaylists: thunk(async ({ addPlaylist }, playlistId, { getState }) => {
-    if (getState().data[playlistId]) {
-      console.log("FETCH CANCEL");
-      return;
+  getPlaylists: thunk(
+    async ({ addPlaylist, setLoading, setError }, playlistId, { getState }) => {
+      console.log(getState());
+      if (getState().data[playlistId]) {
+        console.log("FETCH CANCEL");
+        return;
+      }
+      setLoading(true);
+      try {
+        const playlist = await getPlaylist(playlistId);
+        addPlaylist(playlist);
+        console.log("API CALLED");
+      } catch (error) {
+        console.log(error.response?.data?.error?.message);
+        setError(
+          error.response?.data?.error?.message || "Something went wrong"
+        );
+      } finally {
+        setLoading(false);
+      }
     }
-    setLoading(true);
-    try {
-      const playlist = await getPlaylist(playlistId);
-      addPlaylist(playlist);
-      console.log("API CALLED");
-    } catch (error) {
-      setError(e.response?.data?.error?.message || "Something went wrong");
-    } finally {
-      setLoading(false);
-    }
-  }),
+  ),
 });
 export default playlistModel;

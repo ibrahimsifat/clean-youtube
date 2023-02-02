@@ -1,7 +1,8 @@
 import { useStoreActions } from "easy-peasy";
 import { useEffect } from "react";
+import { BrowserRouter } from "react-router-dom";
 import "./App.css";
-import Home from "./pages/Home/Home";
+import Router from "./routes/Router";
 
 function App() {
   const playlistID = "PL_XxuZqN0xVBPhR5bjBIKyBjTo8pK99gN";
@@ -12,9 +13,9 @@ function App() {
   console.log(playlist);
 
   return (
-    <div>
-      <Home />
-    </div>
+    <BrowserRouter>
+      <Router />
+    </BrowserRouter>
   );
 }
 

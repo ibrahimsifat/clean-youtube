@@ -1,40 +1,29 @@
+import { useStoreActions, useStoreState } from "easy-peasy";
+import { useState } from "react";
 import { BiPlusMedical } from "react-icons/bi";
 import Modal from "react-modal";
+import { customModelStyles } from "../../utils/data/data";
 import IconButton from "../UI/IconButton";
-const customStyles = {
-  content: {
-    width: "60%",
-    top: "50%",
-    left: "50%",
-    right: "auto",
-    bottom: "auto",
-    marginRight: "-50%",
-    transform: "translate(-50%, -50%)",
-  },
-  overlay: {
-    backgroundColor: "rgba(0,0,0,0.7)",
-  },
-};
 
 function AddPlaylist({ modalIsOpen, setIsOpen }) {
-  let subtitle;
-
-  function afterOpenModal() {
-    // references are now sync'd and can be accessed.
-    subtitle.style.color = "#4654A3";
-  }
-
+  const [inputPlaylistId, setInputPlaylistId] = useState("");
+  const { error } = useStoreState((state) => state.playlist);
+  console.log(error);
+  const { getPlaylists } = useStoreActions((action) => action.playlist);
   function closeModal() {
     setIsOpen(false);
   }
+  const handleSubmit = () => {
+    getPlaylists(inputPlaylistId);
+    setIsOpen(false);
+  };
 
   return (
     <div>
       <Modal
         isOpen={modalIsOpen}
-        onAfterOpen={afterOpenModal}
         onRequestClose={closeModal}
-        style={customStyles}
+        style={customModelStyles}
         contentLabel="Example Modal"
         ariaHideApp={false}
       >
@@ -43,13 +32,14 @@ function AddPlaylist({ modalIsOpen, setIsOpen }) {
           correct data for you
         </h2>
 
-        <form class="mt-6 flex w-full">
+        <form class="mt-6 flex w-full" onSubmit={handleSubmit}>
           <input
             class="rounded-l-lg py-1 px-4 border-t mr-0 border-b border-l text-gray-800 border-gray-200 bg-white w-full focus:outline-none"
             placeholder="PL_lakasldejksdsslakdfhas_drtyula"
+            onChange={(e) => setInputPlaylistId(e.target.value)}
           />
 
-          <IconButton>
+          <IconButton type={"submit"}>
             <BiPlusMedical />
             <span className="ml-2 md:text-md text-sm">Add</span>
           </IconButton>

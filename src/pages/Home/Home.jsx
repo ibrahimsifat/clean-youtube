@@ -1,15 +1,13 @@
+import { useStoreState } from "easy-peasy";
 import React from "react";
-import MobileNav from "../../components/Navbar/Mobile-navbar/MobileNav";
-import Navbar from "../../components/Navbar/Navbar";
-import useWindowDimensions from "../../hooks/useWindowDimensions";
+import AllPlaylists from "../../components/playlists/AllPlaylists";
 
 const Home = () => {
-  const { width } = useWindowDimensions();
-
+  const { data } = useStoreState((state) => state.playlist);
+  const playlistArray = Object.values(data);
   return (
     <>
-      <Navbar />
-      {width < 636 && <MobileNav />}
+      <AllPlaylists playlists={playlistArray} />
     </>
   );
 };

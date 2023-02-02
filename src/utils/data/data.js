@@ -40,3 +40,17 @@ export const navData = [
     link: "search",
   },
 ];
+export const customModelStyles = {
+  content: {
+    width: "60%",
+    top: "50%",
+    left: "50%",
+    right: "auto",
+    bottom: "auto",
+    marginRight: "-50%",
+    transform: "translate(-50%, -50%)",
+  },
+  overlay: {
+    backgroundColor: "rgba(0,0,0,0.7)",
+  },
+};
