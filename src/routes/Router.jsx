@@ -3,6 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import MobileNav from "../components/Navbar/Mobile-navbar/MobileNav";
 import Navbar from "../components/Navbar/Navbar";
 import SemiNavigation from "../components/SemiNavigation/SemiNavigation";
+import VideoPlayer from "../components/videos/VideoPlayer";
 import useWindowDimensions from "../hooks/useWindowDimensions";
 import Home from "../pages/Home/Home";
 import NotFound from "../pages/notFound/NotFound";
@@ -20,6 +21,7 @@ const Router = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/playlist/:playlistId" element={<PlaylistDetails />} />
+          <Route path="/video/:videoId" element={<VideoPlayer />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         {width < 636 && <MobileNav />}

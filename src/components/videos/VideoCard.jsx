@@ -1,16 +1,19 @@
 import { useStoreState } from "easy-peasy";
 import React from "react";
-import { AiFillDelete } from "react-icons/ai";
 import { MdFavorite, MdFavoriteBorder } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { Tooltip } from "react-tooltip";
 const VideoCard = ({ playlistItem }) => {
   const { layout } = useStoreState((state) => state.playlistLayout);
-  const { thumbnail, title } = playlistItem;
+  const {
+    thumbnail,
+    title,
+    contentDetails: { videoId },
+  } = playlistItem;
   return (
     <div class="  dark:text-white sm:m-0 m-4">
       <div className={layout == "list" ? " w-full lg:max-w-full lg:flex " : ""}>
-        <Link to={`/playlist/${"playlistId"}`}>
+        <Link to={`/video/${videoId}`}>
           <img
             src={thumbnail?.url}
             alt={title}
@@ -34,7 +37,7 @@ const VideoCard = ({ playlistItem }) => {
               </svg>
               Members only
             </p>
-            <Link to={`/playlist/${"playlistId"}`}>
+            <Link to={`/video/${videoId}`}>
               <div class=" font-bold text-md mb-2 h-14">
                 {title.slice(0, 60)}
               </div>
@@ -51,14 +54,14 @@ const VideoCard = ({ playlistItem }) => {
                 <p class="leading-none">{"channelTitle"}</p>
               </div>
             </div>
-            <div className="flex justify-center items-center md:space-x-6 space-x-3">
-              {"hello" ? (
-                <MdFavoriteBorder size={24} />
-              ) : (
-                <MdFavorite size={24} />
-              )}
-              <AiFillDelete size={24} color="red" />
-            </div>
+            {"hello" ? (
+              <MdFavoriteBorder
+                size={24}
+                className="hover:fill-red-500 duration-200 cursor-pointer"
+              />
+            ) : (
+              <MdFavorite size={24} />
+            )}
             <Tooltip
               id="my-element"
               data-tooltip-content="Remove to Favorite"
