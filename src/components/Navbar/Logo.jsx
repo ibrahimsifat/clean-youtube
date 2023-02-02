@@ -1,11 +1,14 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 import LogoImage from "../../assets/logo.png";
 
 const Logo = () => {
   return (
     <div className="inline-flex">
-      <img src={LogoImage} alt="logo" className="lg:w-60 md:w-40 w-32" />
+      <Link to="/">
+        <img src={LogoImage} alt="logo" className="lg:w-60 md:w-40 w-32" />
+      </Link>
     </div>
   );
 };

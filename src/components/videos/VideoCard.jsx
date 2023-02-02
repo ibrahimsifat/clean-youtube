@@ -4,16 +4,16 @@ import { AiFillDelete } from "react-icons/ai";
 import { MdFavorite, MdFavoriteBorder } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { Tooltip } from "react-tooltip";
-const VideoCard = () => {
+const VideoCard = ({ playlistItem }) => {
   const { layout } = useStoreState((state) => state.playlistLayout);
-
+  const { thumbnail, title } = playlistItem;
   return (
     <div class="  dark:text-white sm:m-0 m-4">
       <div className={layout == "list" ? " w-full lg:max-w-full lg:flex " : ""}>
         <Link to={`/playlist/${"playlistId"}`}>
           <img
-            src={"asdf"}
-            alt={"playlistTitle"}
+            src={thumbnail?.url}
+            alt={title}
             class={
               layout == "list"
                 ? "w-full h-full lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden"
@@ -36,7 +36,7 @@ const VideoCard = () => {
             </p>
             <Link to={`/playlist/${"playlistId"}`}>
               <div class=" font-bold text-md mb-2 h-14">
-                playlistTitle.slice(0, 90)
+                {title.slice(0, 60)}
               </div>
             </Link>
           </div>

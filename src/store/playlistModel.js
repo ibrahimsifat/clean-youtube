@@ -5,7 +5,7 @@ const playlistModel = persist({
   data: {},
   error: "",
   loading: false,
-
+  currentPlaylist: [],
   setError: action((state, payload) => {
     state.error = payload;
   }),
@@ -38,5 +38,8 @@ const playlistModel = persist({
       }
     }
   ),
+  getPlaylistById: action((state, playlistId) => {
+    state.currentPlaylist = state.data[playlistId];
+  }),
 });
 export default playlistModel;
