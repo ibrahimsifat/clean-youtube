@@ -3,16 +3,16 @@ import React from "react";
 import { MdFavorite, MdFavoriteBorder } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { Tooltip } from "react-tooltip";
-const VideoCard = ({ playlistItem }) => {
+const VideoCard = ({ playingVideo }) => {
   const { layout } = useStoreState((state) => state.playlistLayout);
   const {
     thumbnail,
     title,
     contentDetails: { videoId },
-  } = playlistItem;
+  } = playingVideo;
   return (
     <div class="  dark:text-white sm:m-0 m-4">
-      <div className={layout == "list" ? " w-full lg:max-w-full lg:flex " : ""}>
+      <div className={layout == "list" ? " w-full lg:max-w-full flex " : ""}>
         <Link to={`/video/${videoId}`}>
           <img
             src={thumbnail?.url}

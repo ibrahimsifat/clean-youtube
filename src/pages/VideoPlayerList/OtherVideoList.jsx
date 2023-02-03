@@ -1,21 +1,12 @@
-import { useStoreActions, useStoreState } from "easy-peasy";
-import React, { useEffect, useState } from "react";
+import { useStoreState } from "easy-peasy";
+import React, { useState } from "react";
 import ReactPaginate from "react-paginate";
-import { useParams } from "react-router-dom";
-import SemiNavigation from "../../../components/SemiNavigation/SemiNavigation";
-import VideoCard from "../../../components/videos/VideoCard";
 
-const PlaylistDetails = () => {
+import SemiNavigation from "../../components/SemiNavigation/SemiNavigation";
+import VideoCard from "../../components/videos/VideoCard";
+
+const OtherVideoList = ({ items }) => {
   const { layout } = useStoreState((state) => state.playlistLayout);
-  const { currentPlaylist } = useStoreState((state) => state.playlist);
-  const { getPlaylistById } = useStoreActions((actions) => actions.playlist);
-
-  const { playlistId } = useParams();
-  console.log(playlistId);
-  useEffect(() => {
-    getPlaylistById(playlistId);
-  }, [playlistId]);
-  const { playlistItems: items } = currentPlaylist;
 
   // Here we use item offsets; we could also use page offsets
   // following the API or data you're working with.
@@ -32,9 +23,9 @@ const PlaylistDetails = () => {
   // Invoke when user click to request another page.
   const handlePageClick = (event) => {
     const newOffset = (event.selected * itemsPerPage) % items.length;
-    console.log(
-      `User requested page number ${event.selected}, which is offset ${newOffset}`
-    );
+    // console.log(
+    //   `User requested page number ${event.selected}, which is offset ${newOffset}`
+    // );
     setItemOffset(newOffset);
   };
 
@@ -77,4 +68,4 @@ const PlaylistDetails = () => {
   );
 };
 
-export default PlaylistDetails;
+export default OtherVideoList;

@@ -5,7 +5,7 @@ import Logo from "./Logo";
 import ThemeToggle from "./ThemeToggle";
 const Navbar = () => {
   return (
-    <nav className=" dark:bg-gray-800 dark:text-white bg-white w-full  fixed top-0 z-50 ">
+    <nav className=" dark:bg-gray-800 dark:text-white bg-white w-full  z-50 ">
       <div className="container flex relative justify-between items-center mx-auto px-8 h-20 ">
         {/* <!-- logo --> */}
         <Logo />

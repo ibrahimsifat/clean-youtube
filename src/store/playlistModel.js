@@ -5,7 +5,7 @@ const playlistModel = persist({
   data: {},
   error: "",
   loading: false,
-  currentPlaylist: [],
+  currentPlaylist: {},
   setError: action((state, payload) => {
     state.error = payload;
   }),

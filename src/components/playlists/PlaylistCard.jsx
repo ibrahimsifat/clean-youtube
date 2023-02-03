@@ -6,7 +6,6 @@ import { Link } from "react-router-dom";
 import { Tooltip } from "react-tooltip";
 const PlaylistCard = ({ playlist }) => {
   const { layout } = useStoreState((state) => state.playlistLayout);
-  console.log(playlist);
   const {
     channelTitle,
     playlistDescription,
@@ -14,9 +13,10 @@ const PlaylistCard = ({ playlist }) => {
     playlistTitle,
     playlistId,
   } = playlist;
+
   return (
     <div class="  dark:text-white sm:m-0 m-4">
-      <div className={layout == "list" ? " w-full lg:max-w-full lg:flex " : ""}>
+      <div className={layout == "list" ? " w-full lg:max-w-full  flex" : ""}>
         <Link to={`/playlist/${playlistId}`}>
           <img
             src={playlistThumbnail.url}

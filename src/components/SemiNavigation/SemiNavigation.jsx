@@ -8,7 +8,7 @@ const SemiNavigation = () => {
   );
 
   return (
-    <div className="sm:flex justify-between items-center mt-10 hidden mb-10">
+    <div className="sm:flex justify-between items-center mt-10 hidden  pb-10 ">
       <SearchBar />
       <div class="ml-auto bg-white text-sm text-gray-500 leading-none border-2 border-white rounded-full inline-flex">
         <button

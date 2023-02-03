@@ -1,6 +1,7 @@
 import { useStoreState } from "easy-peasy";
 import React from "react";
 import AllPlaylists from "../../components/playlists/AllPlaylists";
+import SemiNavigation from "../../components/SemiNavigation/SemiNavigation";
 import NoContent from "./NoContent";
 
 const Home = () => {
@@ -11,6 +12,7 @@ const Home = () => {
   }
   return (
     <>
+      <SemiNavigation />
       <AllPlaylists playlists={playlistArray} />
     </>
   );

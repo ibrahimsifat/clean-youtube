@@ -3,7 +3,7 @@ import AddPlaylistBtn from "../../components/Navbar/AddPlaylistBtn";
 
 const NoContent = () => {
   return (
-    <div class=" w-full px-16 md:px-0 pt-40 flex items-center justify-center">
+    <div class=" w-full px-16 md:px-0 h-screen flex items-center justify-center">
       <div class="bg-white border flex flex-col items-center justify-center px-4 md:px-8 lg:px-24 py-8 rounded-lg shadow-2xl dark:bg-gradient-to-l dark:from-black dark:via-neutral-900 dark:to-black dark:shadow-lg  dark:shadow-white/20">
         <p class="text-5xl md:text-6xl lg:text-8xl font-bold tracking-wider text-gray-300">
           No Playlist
