@@ -6,6 +6,7 @@ import NoContent from "./NoContent";
 
 const Home = () => {
   const { data } = useStoreState((state) => state.playlist);
+  console.log("home called");
   const playlistArray = Object.values(data);
   if (playlistArray?.length <= 0) {
     return <NoContent />;

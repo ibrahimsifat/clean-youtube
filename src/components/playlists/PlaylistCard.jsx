@@ -23,12 +23,11 @@ const PlaylistCard = ({ playlist }) => {
   }
   console.log(playlist, channelTitle);
   return (
-    <div class="  dark:text-white sm:m-0 m-4">
+    <div className="  dark:text-white sm:m-0 m-4">
       <div
         className={`
  
         ${matchSearch && "border-4 border-red-400"}
- 
           ${layout == "list" ? " w-full lg:max-w-full flex " : ""}
         `}
       >
@@ -36,7 +35,7 @@ const PlaylistCard = ({ playlist }) => {
           <img
             src={playlistThumbnail?.url}
             alt={playlistTitle}
-            class={
+            className={
               layout == "list"
                 ? "w-full h-full lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden"
                 : "w-full  h-auto lg:w-full flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden"
@@ -44,11 +43,11 @@ const PlaylistCard = ({ playlist }) => {
           />
         </Link>
 
-        <div class=" dark:bg-gray-900 bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal w-full">
-          <div class="mb-8">
-            <p class="text-sm dark:text-white text-gray-600 flex items-center">
+        <div className=" dark:bg-gray-900 bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal w-full">
+          <div className="mb-8">
+            <p className="text-sm dark:text-white text-gray-600 flex items-center">
               <svg
-                class="fill-current text-gray-500 w-3 h-3 mr-2"
+                className="fill-current text-gray-500 w-3 h-3 mr-2"
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 20 20"
               >
@@ -57,20 +56,20 @@ const PlaylistCard = ({ playlist }) => {
               Members only
             </p>
             <Link to={`/playlist/${playlistId}`}>
-              <div class=" font-bold text-md mb-2 h-14">
+              <div className=" font-bold text-md mb-2 h-14">
                 {playlistTitle?.slice(0, 90)}
               </div>
             </Link>
           </div>
-          <div class="flex items-center justify-between">
+          <div className="flex items-center justify-between">
             <div className="flex items-center">
               <img
-                class="w-10 h-10 rounded-full mr-4"
+                className="w-10 h-10 rounded-full mr-4"
                 src="https://yt3.googleusercontent.com/_laaRTCwOZ6hxLgPmjN8HnzzIlhWqyiwbD2kuofkSLx51FImoP0esGJVxyZm7oZ46Yby9MVz7g=s88-c-k-c0x00ffffff-no-rj"
                 alt="Avatar of Writer"
               />
-              <div class="text-sm">
-                <p class="leading-none">{channelTitle}</p>
+              <div className="text-sm">
+                <p className="leading-none">{channelTitle}</p>
               </div>
             </div>
             <div className="flex justify-center items-center md:space-x-6 space-x-3">

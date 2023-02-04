@@ -20,28 +20,28 @@ const DeletePlaylist = ({ playlistId, modalIsOpen, setIsOpen }) => {
       contentLabel="Example Modal"
       ariaHideApp={false}
     >
-      <div class="w-full  max-w-lg p-5 relative mx-auto my-auto rounded-xl shadow-lg  bg-white ">
+      <div className="w-full  max-w-lg p-5 relative mx-auto my-auto rounded-xl shadow-lg  bg-white ">
         {/* <!--content--> */}
-        <div class="">
+        <div className="">
           {/* <!--body--> */}
-          <div class="text-center p-5 flex-auto justify-center">
+          <div className="text-center p-5 flex-auto justify-center">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              class="w-4 h-4 -m-1 flex items-center text-red-500 mx-auto"
+              className="w-4 h-4 -m-1 flex items-center text-red-500 mx-auto"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
             >
               <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
                 d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
               ></path>
             </svg>
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              class="w-16 h-16 flex items-center text-red-500 mx-auto"
+              className="w-16 h-16 flex items-center text-red-500 mx-auto"
               viewBox="0 0 20 20"
               fill="currentColor"
             >
@@ -51,22 +51,22 @@ const DeletePlaylist = ({ playlistId, modalIsOpen, setIsOpen }) => {
                 clip-rule="evenodd"
               />
             </svg>
-            <h2 class="text-xl font-bold py-4 ">Are you sure?</h2>
-            <p class="text-sm text-gray-500 px-8">
+            <h2 className="text-xl font-bold py-4 ">Are you sure?</h2>
+            <p className="text-sm text-gray-500 px-8">
               Do you really want to delete your account? This process cannot be
               undone
             </p>
           </div>
           {/* <!--footer--> */}
-          <div class="p-3  mt-2 text-center space-x-4 md:block">
+          <div className="p-3  mt-2 text-center space-x-4 md:block">
             <button
               onClick={closeModal}
-              class="mb-2 md:mb-0 bg-white px-5 py-2 text-sm shadow-sm font-medium tracking-wider border text-gray-600 rounded-md hover:shadow-lg hover:bg-gray-100"
+              className="mb-2 md:mb-0 bg-white px-5 py-2 text-sm shadow-sm font-medium tracking-wider border text-gray-600 rounded-md hover:shadow-lg hover:bg-gray-100"
             >
               Cancel
             </button>
             <button
-              class="mb-2 md:mb-0 bg-red-500 border border-red-500 px-5 py-2 text-sm shadow-sm font-medium tracking-wider text-white rounded-md hover:shadow-lg hover:bg-red-600"
+              className="mb-2 md:mb-0 bg-red-500 border border-red-500 px-5 py-2 text-sm shadow-sm font-medium tracking-wider text-white rounded-md hover:shadow-lg hover:bg-red-600"
               onClick={handleSubmit}
             >
               Delete

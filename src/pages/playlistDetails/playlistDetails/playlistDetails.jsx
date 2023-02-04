@@ -49,7 +49,11 @@ const PlaylistDetails = () => {
         }
       >
         {currentItems?.map((item) => (
-          <VideoCard currentItems={currentItems} playingVideo={item} />
+          <VideoCard
+            key={item.contentDetails.videoId}
+            currentItems={currentItems}
+            playingVideo={item}
+          />
         ))}
       </div>
       <UsePagination

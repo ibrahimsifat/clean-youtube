@@ -16,7 +16,7 @@ const UseSearch = (searchString, playlists, searchField) => {
     );
 
     setPlaylistState(filteredPlaylist);
-  }, [searchString]);
+  }, [searchString, playlists?.length]);
 
   return playlistState;
 };

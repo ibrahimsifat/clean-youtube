@@ -1,8 +1,13 @@
 import React from "react";
 import ShowMoreText from "react-show-more-text";
+import VideoNote from "../../components/videos/videoNote/VideoNote";
 
 const PlayingVideoDetails = ({ playingVideo }) => {
-  const { title, description } = playingVideo || {};
+  const {
+    title,
+    description,
+    contentDetails: { videoId },
+  } = playingVideo || {};
 
   return (
     <div className="space-y-4 dark:text-white font-bold ">
@@ -10,23 +15,16 @@ const PlayingVideoDetails = ({ playingVideo }) => {
       <div className="flex justify-between items-center">
         <div className="flex items-center">
           <img
-            class="w-10 h-10 rounded-full mr-4"
+            className="w-10 h-10 rounded-full mr-4"
             src="https://yt3.googleusercontent.com/_laaRTCwOZ6hxLgPmjN8HnzzIlhWqyiwbD2kuofkSLx51FImoP0esGJVxyZm7oZ46Yby9MVz7g=s88-c-k-c0x00ffffff-no-rj"
             alt="Avatar of Writer"
           />
-          <div class="text-md">
-            <p class="leading-none">{"channelTitle"}</p>
-            <p class="leading-none text-sm">{"channelTitle"}</p>
+          <div className="text-md">
+            <p className="leading-none">{"channelTitle"}</p>
+            <p className="leading-none text-sm">{"channelTitle"}</p>
           </div>
         </div>
-        <div className="flex items-center space-x-3">
-          <div className="bg-white  bg-opacity-80 hover:bg-opacity-100  px-4 py-2 cursor-pointer rounded-full">
-            show note
-          </div>
-          <div className="bg-white  bg-opacity-80 hover:bg-opacity-100  px-4 py-2 cursor-pointer rounded-full">
-            Take Note
-          </div>
-        </div>
+        <VideoNote videoId={videoId} />
       </div>
       <ShowMoreText
         /* Default options */
@@ -35,7 +33,7 @@ const PlayingVideoDetails = ({ playingVideo }) => {
         less="...Show less"
         expanded={false}
         className="bg-white dark:bg-black  bg-opacity-50 p-5 rounded-lg "
-        anchorClass=" md:text-xl text-md"
+        anchorclassName=" md:text-xl text-md"
       >
         {description}
       </ShowMoreText>

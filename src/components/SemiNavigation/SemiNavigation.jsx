@@ -10,10 +10,10 @@ const SemiNavigation = () => {
   return (
     <div className="sm:flex justify-between items-center mt-10 hidden  pb-10 ">
       <SearchBar />
-      <div class="ml-auto bg-white text-sm text-gray-500 leading-none border-2 border-white rounded-full inline-flex">
+      <div className="ml-auto bg-white text-sm text-gray-500 leading-none border-2 border-white rounded-full inline-flex">
         <button
           onClick={() => setListLayout("grid")}
-          class="inline-flex items-center transition-colors duration-300 ease-in focus:outline-none hover:text-rose-500 focus:text-rose-500 font-bold rounded-l-full px-4 py-3 active"
+          className="inline-flex items-center transition-colors duration-300 ease-in focus:outline-none hover:text-rose-500 focus:text-rose-500 font-bold rounded-l-full px-4 py-3 active"
           id="grid"
         >
           <svg
@@ -23,10 +23,10 @@ const SemiNavigation = () => {
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            class="fill-current w-4 h-4 mr-2"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="fill-current w-4 h-4 mr-2"
           >
             <rect x="3" y="3" width="7" height="7"></rect>
             <rect x="14" y="3" width="7" height="7"></rect>
@@ -37,7 +37,7 @@ const SemiNavigation = () => {
         </button>
         <button
           onClick={() => setGirdLayout("list")}
-          class="inline-flex items-center transition-colors duration-300 ease-in focus:outline-none hover:text-rose-500 font-bold focus:text-rose-500 rounded-r-full px-4 py-2"
+          className="inline-flex items-center transition-colors duration-300 ease-in focus:outline-none hover:text-rose-500 font-bold focus:text-rose-500 rounded-r-full px-4 py-2"
           id="list"
         >
           <svg
@@ -47,10 +47,10 @@ const SemiNavigation = () => {
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            class="fill-current w-4 h-4 mr-2"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="fill-current w-4 h-4 mr-2"
           >
             <line x1="8" y1="6" x2="21" y2="6"></line>
             <line x1="8" y1="12" x2="21" y2="12"></line>

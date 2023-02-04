@@ -1,50 +1,61 @@
 import { action, persist, thunk } from "easy-peasy";
 import getPlaylist from "../api";
 
-const playlistModel = persist({
-  data: {},
-  isError: "",
-  isLoading: false,
-  currentPlaylist: {},
-  searchString: "",
-  setError: action((state, payload) => {
-    state.isError = payload;
-  }),
-  setLoading: action((state, payload) => {
-    state.isLoading = payload;
-  }),
-  addPlaylist: action((state, payload) => {
-    state.data[payload.playlistId] = payload;
-  }),
-  deletePlaylist: action((state, playlistId) => {
-    delete state.data[playlistId];
-  }),
-  getPlaylists: thunk(
-    async ({ addPlaylist, setLoading, setError }, playlistId, { getState }) => {
+const playlistModel = persist(
+  {
+    data: {},
+    isError: "",
+    isLoading: false,
+    currentPlaylist: {},
+    searchString: "",
+    runningVideo: "",
+    setError: action((state, payload) => {
+      state.isError = payload;
+    }),
+    setLoading: action((state, payload) => {
+      state.isLoading = payload;
+    }),
+    addPlaylist: action((state, payload) => {
+      state.data[payload.playlistId] = payload;
+    }),
+    deletePlaylist: action((state, playlistId) => {
+      delete state.data[playlistId];
+    }),
+    takeNote: action((state, payload) => {
+      const playlistId = state.currentPlaylist.playlistId;
+      const videoId = payload;
+      const video = state.data[playlistId].playlistItems.find(
+        (item) => item.contentDetails.videoId === videoId
+      );
+      video["note"] = payload.note;
+      state.video = video;
+    }),
+    getPlaylists: thunk(async (action, playlistId, { getState }) => {
       if (getState().data[playlistId]) {
         console.log("FETCH CANCEL");
         return;
       }
       try {
-        setLoading(true);
+        action.setLoading(true);
         const playlist = await getPlaylist(playlistId);
-        addPlaylist(playlist);
-        setError("");
+        action.addPlaylist(playlist);
+        action.setError("");
       } catch (error) {
         // console.log(error.response?.data?.error?.message);
-        setError(
+        action.setError(
           error.response?.data?.error?.message || "Something went wrong"
         );
       } finally {
-        setLoading(false);
+        action.setLoading(false);
       }
-    }
-  ),
-  getPlaylistById: action((state, playlistId) => {
-    state.currentPlaylist = state.data[playlistId];
-  }),
-  search: action((state, payload) => {
-    state.searchString = payload;
-  }),
-});
+    }),
+    getPlaylistById: action((state, playlistId) => {
+      state.currentPlaylist = state.data[playlistId];
+    }),
+    search: action((state, payload) => {
+      state.searchString = payload;
+    }),
+  },
+  { storage: localStorage }
+);
 export default playlistModel;
