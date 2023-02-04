@@ -8,7 +8,7 @@ const playlistModel = persist(
     isLoading: false,
     currentPlaylist: {},
     searchString: "",
-    runningVideo: "",
+    runningVideo: {},
     setError: action((state, payload) => {
       state.isError = payload;
     }),
@@ -23,12 +23,20 @@ const playlistModel = persist(
     }),
     takeNote: action((state, payload) => {
       const playlistId = state.currentPlaylist.playlistId;
-      const videoId = payload;
+      const videoId = payload.videoId;
       const video = state.data[playlistId].playlistItems.find(
         (item) => item.contentDetails.videoId === videoId
       );
       video["note"] = payload.note;
+      state.runningVideo = video;
       state.video = video;
+    }),
+    getVideoById: action((state, videoId) => {
+      const playlistId = state.currentPlaylist.playlistId;
+      const video = state.data[playlistId].playlistItems.find(
+        (item) => item.contentDetails.videoId === videoId
+      );
+      state.runningVideo = video;
     }),
     getPlaylists: thunk(async (action, playlistId, { getState }) => {
       if (getState().data[playlistId]) {

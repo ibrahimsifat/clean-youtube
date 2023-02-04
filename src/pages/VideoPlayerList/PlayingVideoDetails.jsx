@@ -2,12 +2,12 @@ import React from "react";
 import ShowMoreText from "react-show-more-text";
 import VideoNote from "../../components/videos/videoNote/VideoNote";
 
-const PlayingVideoDetails = ({ playingVideo }) => {
+const PlayingVideoDetails = ({ runningVideo }) => {
   const {
     title,
     description,
     contentDetails: { videoId },
-  } = playingVideo || {};
+  } = runningVideo || {};
 
   return (
     <div className="space-y-4 dark:text-white font-bold ">
@@ -24,7 +24,7 @@ const PlayingVideoDetails = ({ playingVideo }) => {
             <p className="leading-none text-sm">{"channelTitle"}</p>
           </div>
         </div>
-        <VideoNote videoId={videoId} />
+        <VideoNote videoId={videoId} runningVideo={runningVideo} />
       </div>
       <ShowMoreText
         /* Default options */

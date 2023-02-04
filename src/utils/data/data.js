@@ -40,11 +40,13 @@ export const navData = [
     link: "search",
   },
 ];
+const mediaQuery = window.matchMedia("(max-width: 768px)");
+console.log("mediaQuery", mediaQuery);
 export const customModelStyles = {
   content: {
     margin: 0,
     padding: 0,
-    width: "60%",
+    width: "70%",
     top: "50%",
     left: "50%",
     right: "auto",
@@ -52,6 +54,7 @@ export const customModelStyles = {
     marginRight: "-50%",
     transform: "translate(-50%, -50%)",
   },
+
   overlay: {
     backgroundColor: "rgba(0,0,0,0.7)",
   },

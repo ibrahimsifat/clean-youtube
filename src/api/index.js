@@ -13,10 +13,30 @@ const getPlaylistItem = async (playlistId, pageToken = "", result = []) => {
   return result;
 };
 
+const getChannelData = async (channelId) => {
+  const channelUrl = `https://youtube.googleapis.com/youtube/v3/channels?part=snippet&id=${channelId}&key=${key}`;
+  const {
+    data: { items },
+  } = await axios.get(channelUrl);
+  const {
+    customUrl,
+    country,
+    description,
+    thumbnails: { default: channelThumbnails },
+  } = items[0].snippet;
+  return {
+    url: `https://www.youtube.com/${customUrl}`,
+    country,
+    thumbnails: channelThumbnails,
+    description,
+  };
+};
 const getPlaylist = async (playlistId) => {
   const URL = `https://youtube.googleapis.com/youtube/v3/playlists?part=snippet&id=${playlistId}&key=${key}`;
 
   const { data } = await axios.get(URL);
+
+  // get all playlist items with recursion
   let playlistItems = await getPlaylistItem(playlistId);
 
   const {
@@ -26,6 +46,9 @@ const getPlaylist = async (playlistId) => {
     channelId,
     channelTitle,
   } = data?.items[0]?.snippet;
+
+  // get channel data
+  const channelData = await getChannelData(channelId);
 
   playlistItems = playlistItems.map((item) => {
     const {
@@ -48,6 +71,7 @@ const getPlaylist = async (playlistId) => {
     playlistDescription,
     playlistThumbnail: thumbnails.high,
     channelId,
+    channelData,
     channelTitle,
     playlistItems,
   };
