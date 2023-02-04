@@ -8,11 +8,16 @@ const VideoCard = ({ playingVideo }) => {
   const {
     thumbnail,
     title,
+    matchSearch,
     contentDetails: { videoId },
   } = playingVideo;
   return (
     <div class="  dark:text-white sm:m-0 m-4">
-      <div className={layout == "list" ? " w-full lg:max-w-full flex " : ""}>
+      <div
+        className={`
+         ${matchSearch && "border-4 border-red-400"}
+     ${layout == "list" ? " w-full lg:max-w-full flex " : ""}`}
+      >
         <Link to={`/video/${videoId}`}>
           <img
             src={thumbnail?.url}

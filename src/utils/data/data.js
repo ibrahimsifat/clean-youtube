@@ -42,6 +42,8 @@ export const navData = [
 ];
 export const customModelStyles = {
   content: {
+    margin: 0,
+    padding: 0,
     width: "60%",
     top: "50%",
     left: "50%",

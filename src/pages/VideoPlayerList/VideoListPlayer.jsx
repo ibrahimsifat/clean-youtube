@@ -26,11 +26,11 @@ const VideoListPlayer = () => {
   // console.log("othersVideo", othersVideo);
 
   return (
-    <div className="mt-36">
+    <div className="mt-16">
       <VideoPlayer />
       <PlayingVideoDetails playingVideo={playingVideo} />
 
-      <OtherVideoList items={othersVideo} />
+      <OtherVideoList ordersItems={othersVideo} />
     </div>
   );
 };

@@ -5,7 +5,7 @@ const PlayingVideoDetails = ({ playingVideo }) => {
   const { title, description } = playingVideo || {};
 
   return (
-    <div className="space-y-4 dark:text-white font-bold">
+    <div className="space-y-4 dark:text-white font-bold ">
       <p className="md:text-2xl text-xl font-bold my-5">{title}</p>
       <div className="flex justify-between items-center">
         <div className="flex items-center">

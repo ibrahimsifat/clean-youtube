@@ -1,5 +1,22 @@
+import { useStoreActions } from "easy-peasy";
 import React from "react";
 const SearchBar = () => {
+  // search projects
+  const { search } = useStoreActions((actions) => actions.playlist);
+  const handleSearch = (e) => {
+    console.log(e.target.value);
+    search(e.target.value);
+  };
+
+  const debounce = (fn, delay) => {
+    let timerId;
+    return (...args) => {
+      clearTimeout(timerId);
+      timerId = setTimeout(() => {
+        fn(...args);
+      }, delay);
+    };
+  };
   return (
     <div class="relative rounded-full bg-white shadow-xl ring-1 ring-gray-900/5  ">
       <div class="mx-auto w-full">
@@ -7,6 +24,7 @@ const SearchBar = () => {
           <input
             type="search"
             class="peer cursor-pointer relative z-10 h-11 w-11 rounded-full border bg-transparent pl-12 outline-none focus:w-full focus:cursor-text focus:border-blue-400 focus:pl-16 focus:pr-4"
+            onChange={debounce(handleSearch, 400)}
           />
           <svg
             xmlns="http://www.w3.org/2000/svg"

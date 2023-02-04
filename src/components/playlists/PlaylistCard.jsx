@@ -1,25 +1,40 @@
 import { useStoreState } from "easy-peasy";
-import React from "react";
+import React, { useState } from "react";
 import { AiFillDelete } from "react-icons/ai";
 import { MdFavorite, MdFavoriteBorder } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { Tooltip } from "react-tooltip";
+import DeletePlaylist from "./DeletePlaylist";
 const PlaylistCard = ({ playlist }) => {
   const { layout } = useStoreState((state) => state.playlistLayout);
+
   const {
     channelTitle,
     playlistDescription,
     playlistThumbnail,
     playlistTitle,
     playlistId,
-  } = playlist;
+    matchSearch,
+  } = playlist || {};
+  const [modalIsOpen, setIsOpen] = useState(false);
 
+  function openModal() {
+    setIsOpen(true);
+  }
+  console.log(playlist, channelTitle);
   return (
     <div class="  dark:text-white sm:m-0 m-4">
-      <div className={layout == "list" ? " w-full lg:max-w-full  flex" : ""}>
+      <div
+        className={`
+ 
+        ${matchSearch && "border-4 border-red-400"}
+ 
+          ${layout == "list" ? " w-full lg:max-w-full flex " : ""}
+        `}
+      >
         <Link to={`/playlist/${playlistId}`}>
           <img
-            src={playlistThumbnail.url}
+            src={playlistThumbnail?.url}
             alt={playlistTitle}
             class={
               layout == "list"
@@ -43,7 +58,7 @@ const PlaylistCard = ({ playlist }) => {
             </p>
             <Link to={`/playlist/${playlistId}`}>
               <div class=" font-bold text-md mb-2 h-14">
-                {playlistTitle.slice(0, 90)}
+                {playlistTitle?.slice(0, 90)}
               </div>
             </Link>
           </div>
@@ -64,7 +79,12 @@ const PlaylistCard = ({ playlist }) => {
               ) : (
                 <MdFavorite size={24} />
               )}
-              <AiFillDelete size={24} color="red" />
+              <AiFillDelete
+                size={24}
+                color="red"
+                // onClick={() => deletePlaylist(playlistId)}
+                onClick={() => openModal()}
+              />
             </div>
             <Tooltip
               id="my-element"
@@ -75,6 +95,11 @@ const PlaylistCard = ({ playlist }) => {
           </div>
         </div>
       </div>
+      <DeletePlaylist
+        playlistId={playlistId}
+        modalIsOpen={modalIsOpen}
+        setIsOpen={setIsOpen}
+      />
     </div>
   );
 };
