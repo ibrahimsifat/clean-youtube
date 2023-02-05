@@ -1,14 +1,19 @@
-import { useStoreActions } from "easy-peasy";
+import { useStoreActions, useStoreState } from "easy-peasy";
 import React from "react";
 import Modal from "react-modal";
 import { customModelStyles } from "../../utils/data/data";
 const DeletePlaylist = ({ playlistId, modalIsOpen, setIsOpen }) => {
-  console.log(playlistId);
+  // console.log(playlistId);
   const { deletePlaylist } = useStoreActions((actions) => actions.playlist);
+  const { removeToRecent } = useStoreActions((actions) => actions.recent);
+  const { items } = useStoreState((actions) => actions.recent);
   function closeModal() {
     setIsOpen(false);
   }
   const handleSubmit = () => {
+    if (items?.includes(playlistId)) {
+      removeToRecent(playlistId);
+    }
     deletePlaylist(playlistId);
     setIsOpen(false);
   };

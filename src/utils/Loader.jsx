@@ -7,7 +7,7 @@ const Loader = () => {
   const { data } = useStoreState((state) => state.playlist);
   const length = Object.keys(data).length || 8;
   const array = new Array(length).fill("hello");
-  console.log(array);
+
   return (
     <div>
       <div className="sm:flex justify-between items-center mt-10 hidden  pb-10 ">

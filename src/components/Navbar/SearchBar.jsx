@@ -4,7 +4,7 @@ const SearchBar = () => {
   // search projects
   const { search } = useStoreActions((actions) => actions.playlist);
   const handleSearch = (e) => {
-    console.log(e.target.value);
+    // console.log(e.target.value);
     search(e.target.value);
   };
 

@@ -5,7 +5,7 @@ import { MdFavorite, MdRecentActors } from "react-icons/md";
 const MobileNav = () => {
   return (
     <div className="w-full fixed bottom-0">
-      <div className="px-7 bg-white shadow-lg rounded-2xl">
+      <div className="px-7 bg-white dark:bg-gray-900 dark:text-white shadow-lg rounded-2xl">
         <div className="flex">
           <div className="flex-1 group">
             <a

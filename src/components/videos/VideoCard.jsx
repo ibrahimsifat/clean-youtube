@@ -19,7 +19,7 @@ const VideoCard = ({ playingVideo }) => {
     contentDetails: { videoId },
   } = playingVideo || {};
 
-  const isThisVideoRunning = runningVideo.contentDetails.videoId === videoId;
+  // const isThisVideoRunning = runningVideo.contentDetails.videoId === videoId;
   const { thumbnails, url: channelUrl, channelTitle } = channelData;
 
   return (
@@ -28,7 +28,7 @@ const VideoCard = ({ playingVideo }) => {
         className={`
          ${matchSearch && "border-4 border-red-400"}
          ${
-           isThisVideoRunning &&
+           !"isThisVideoRunning" &&
            "animate-border from-teal-400 via-rose-400 to-teal-400 bg-[length:400%_400%] p-1.5 transition bg-gradient-to-r rounded"
          }
      ${layout == "list" ? " w-full lg:max-w-full flex " : ""}`}
@@ -37,7 +37,8 @@ const VideoCard = ({ playingVideo }) => {
           <img
             src={thumbnail?.url}
             alt={title}
-            className={`${isThisVideoRunning && " bg-red-500"}
+            className={`
+           
               ${
                 layout == "list"
                   ? "w-full h-full lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden"

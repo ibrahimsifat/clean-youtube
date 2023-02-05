@@ -1,21 +1,20 @@
 import { useStoreState } from "easy-peasy";
 import React from "react";
 import AllPlaylists from "../../components/playlists/AllPlaylists";
-import SemiNavigation from "../../components/SemiNavigation/SemiNavigation";
 import NoContent from "./NoContent";
 
 const Home = () => {
   const { data } = useStoreState((state) => state.playlist);
-  console.log("home called");
+  // console.log("home called");
   const playlistArray = Object.values(data);
   if (playlistArray?.length <= 0) {
     return <NoContent />;
   }
   return (
-    <>
-      <SemiNavigation />
+    <div className="md:mt-16 mt-2">
+      {/* <SemiNavigation /> */}
       <AllPlaylists playlists={playlistArray} />
-    </>
+    </div>
   );
 };
 

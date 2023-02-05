@@ -16,7 +16,7 @@ const PlaylistCard = ({ playlist }) => {
     (state) => state.playlist
   );
 
-  const {
+  let {
     channelTitle,
     playlistDescription,
     playlistThumbnail,
@@ -27,21 +27,19 @@ const PlaylistCard = ({ playlist }) => {
     isFavorite,
   } = playlist || {};
   const { thumbnails, url: channelUrl } = channelData;
-  console.log(channelData);
+  // console.log(channelData);
   const [modalIsOpen, setIsOpen] = useState(false);
 
   function openModal() {
     setIsOpen(true);
   }
-  // console.log("playlist", channelData?.thumbnails?.url);
 
   // handleAddToFavorite
   const handleAddToFavorite = (playlistId) => {
-    addFavorite(playlistId);
     addToFavorite(playlistId);
+    addFavorite(playlistId);
   };
   const handleRemoveToFavorite = (playlistId) => {
-    console.log(playlistId);
     removeFavorite(playlistId);
     removeToFavorite(playlistId);
   };
@@ -49,8 +47,7 @@ const PlaylistCard = ({ playlist }) => {
     <div className="  dark:text-white sm:m-0 m-4">
       <div
         className={`
- 
-        ${matchSearch && "border-4 border-red-400"}
+        ${matchSearch && "border-4 border-rose-400"}
           ${layout == "list" ? " w-full lg:max-w-full flex " : ""}
         `}
       >
@@ -98,6 +95,7 @@ const PlaylistCard = ({ playlist }) => {
                   onClick={() => handleAddToFavorite(playlistId)}
                 />
               )}
+
               <AiFillDelete
                 size={24}
                 color="red"

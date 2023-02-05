@@ -1,20 +1,45 @@
-import { useStoreActions, useStoreState } from "easy-peasy";
+import { useStoreActions } from "easy-peasy";
 import { useState } from "react";
 import { AiOutlinePlus } from "react-icons/ai";
 import Modal from "react-modal";
+import UseErrorModel from "../../hooks/useErrorModel";
 import { customModelStyles } from "../../utils/data/data";
 
 function AddPlaylist({ modalIsOpen, setIsOpen }) {
   const [inputPlaylistId, setInputPlaylistId] = useState("");
-  const { error } = useStoreState((state) => state.playlist);
-  console.log(error);
   const { getPlaylists } = useStoreActions((action) => action.playlist);
+
+  /// open error
   function closeModal() {
     setIsOpen(false);
   }
-  const handleSubmit = () => {
-    getPlaylists(inputPlaylistId);
-    setIsOpen(false);
+  // console.log(channelData);
+  const [errorModalIsOpen, setErrorIsOpen] = useState(false);
+
+  function ErrorOpenModal() {
+    setErrorIsOpen(true);
+  }
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (inputPlaylistId.includes("list=")) {
+      const playlistId = inputPlaylistId.split("list=")[1];
+      if (playlistId.startsWith("PL_")) console.log("inside", playlistId);
+      getPlaylists(playlistId);
+      setIsOpen(false);
+      return;
+    } else if (
+      inputPlaylistId.startsWith("PL_") ||
+      inputPlaylistId.startsWith("UU") ||
+      inputPlaylistId.startsWith("FL") ||
+      inputPlaylistId.startsWith("LP")
+    ) {
+      console.log("outside", inputPlaylistId);
+      getPlaylists(inputPlaylistId);
+      setIsOpen(false);
+    } else {
+      ErrorOpenModal();
+      setIsOpen(false);
+    }
   };
 
   return (
@@ -27,7 +52,7 @@ function AddPlaylist({ modalIsOpen, setIsOpen }) {
         ariaHideApp={false}
       >
         <div className="border flex flex-col items-center justify-center px-4 md:px-8 lg:px-24 py-8 rounded-lg shadow-2xl dark:bg-gradient-to-l dark:from-black dark:via-neutral-900 dark:to-black  ">
-          <p className="text-2xl md:text-4xl lg:text-6xl font-bold tracking-wider text-gray-300">
+          <p className="text-2xl md:text-3xl lg:text-4xl font-bold tracking-wider text-gray-300">
             Add Playlist
           </p>
 
@@ -59,6 +84,10 @@ function AddPlaylist({ modalIsOpen, setIsOpen }) {
           </form>
         </div>
       </Modal>
+      <UseErrorModel
+        errorModalIsOpen={errorModalIsOpen}
+        setErrorIsOpen={setErrorIsOpen}
+      />
     </div>
   );
 }

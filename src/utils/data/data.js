@@ -34,7 +34,7 @@ export const navData = [
   },
 ];
 const mediaQuery = window.matchMedia("(max-width: 768px)");
-console.log("mediaQuery", mediaQuery);
+
 export const customModelStyles = {
   content: {
     margin: 0,

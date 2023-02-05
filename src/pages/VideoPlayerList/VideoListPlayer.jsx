@@ -4,15 +4,17 @@ import { useParams } from "react-router";
 import VideoPlayer from "../../components/videos/VideoPlayer";
 import OtherVideoList from "./OtherVideoList";
 import PlayingVideoDetails from "./PlayingVideoDetails";
-
 const VideoListPlayer = () => {
   const { videoId } = useParams();
-  const { getVideoById } = useStoreActions((actions) => actions.playlist);
+
+  const { setRunningVideoById } = useStoreActions(
+    (actions) => actions.playlist
+  );
   const { runningVideo } = useStoreState((state) => state.playlist);
 
   // set running video
   useEffect(() => {
-    getVideoById(videoId);
+    setRunningVideoById(videoId);
   }, [videoId]);
   const {
     currentPlaylist: { playlistItems },
@@ -37,7 +39,7 @@ const VideoListPlayer = () => {
   return (
     <div className="mt-16">
       <VideoPlayer />
-      <PlayingVideoDetails runningVideo={runningVideo} />
+      <PlayingVideoDetails />
 
       <OtherVideoList ordersItems={playlistItems} />
     </div>

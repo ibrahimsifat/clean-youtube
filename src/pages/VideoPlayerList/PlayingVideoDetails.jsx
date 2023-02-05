@@ -1,21 +1,25 @@
-import { useStoreState } from "easy-peasy";
-import React from "react";
+import { useStoreActions, useStoreState } from "easy-peasy";
+import React, { useEffect } from "react";
+import { useParams } from "react-router-dom";
 import ShowMoreText from "react-show-more-text";
 import VideoNote from "../../components/videos/videoNote/VideoNote";
 
-const PlayingVideoDetails = ({ runningVideo }) => {
-  const {
-    title,
-    description,
-    contentDetails: { videoId },
-  } = runningVideo || {};
+const PlayingVideoDetails = () => {
+  const { videoId } = useParams();
   const { currentPlaylist } = useStoreState((state) => state.playlist);
-  console.log(currentPlaylist);
+  const { runningVideo } = useStoreState((state) => state.playlist);
+  const { setRunningVideoById } = useStoreActions((state) => state.playlist);
+  // set running video
+  useEffect(() => {
+    setRunningVideoById(videoId);
+  }, [videoId]);
+  const { title, description, contentDetails } = runningVideo || {};
+  // console.log(currentPlaylist);
   const {
     channelTitle,
     channelData: { thumbnails, url },
   } = currentPlaylist;
-  console.log(url);
+  // console.log(url);
   return (
     <div className="space-y-4 dark:text-white font-bold ">
       <p className="md:text-2xl text-xl font-bold my-5">{title}</p>
@@ -33,7 +37,10 @@ const PlayingVideoDetails = ({ runningVideo }) => {
             </div>
           </div>
         </a>
-        <VideoNote videoId={videoId} runningVideo={runningVideo} />
+        <VideoNote
+          videoId={contentDetails?.videoId}
+          runningVideo={runningVideo}
+        />
       </div>
       <ShowMoreText
         /* Default options */

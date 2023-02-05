@@ -8,7 +8,7 @@ const ShowVideoNote = ({ showModalIsOpen, setShowIsOpen, runningVideo }) => {
   const { takeNote } = useStoreActions((actions) => actions.playlist);
   const [isEditing, setIsEditing] = useState(false);
   const [content, setContent] = useState(runningVideo?.note);
-  console.log(content);
+
   const { videoId } = useParams();
 
   function closeModal() {

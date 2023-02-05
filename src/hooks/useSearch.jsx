@@ -1,9 +1,8 @@
-import { useStoreState } from "easy-peasy";
 import { useEffect, useState } from "react";
 
 const UseSearch = (searchString, playlists, searchField) => {
   const [playlistState, setPlaylistState] = useState([]);
-  const { items } = useStoreState((state) => state.favorite);
+
   const search = (string) => {
     return (playlist) => {
       if (!string?.trim().length) return playlist;
@@ -18,7 +17,7 @@ const UseSearch = (searchString, playlists, searchField) => {
     );
 
     setPlaylistState(filteredPlaylist);
-  }, [searchString, playlists?.length, items.length]);
+  }, [searchString, playlists?.length]);
 
   return playlistState;
 };

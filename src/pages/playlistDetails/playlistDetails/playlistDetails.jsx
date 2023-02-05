@@ -11,15 +11,21 @@ const PlaylistDetails = () => {
   const { currentPlaylist, searchString } = useStoreState(
     (state) => state.playlist
   );
-  const { getPlaylistById } = useStoreActions((actions) => actions.playlist);
+
+  const { getPlaylistById, setRunningVideoById } = useStoreActions(
+    (actions) => actions.playlist
+  );
+  const { addToRecent } = useStoreActions((actions) => actions.recent);
 
   const { playlistId } = useParams();
-  console.log(playlistId);
+  // console.log(playlistId);
   useEffect(() => {
     getPlaylistById(playlistId);
+    addToRecent(playlistId);
+    setRunningVideoById();
   }, [playlistId]);
   const { playlistItems } = currentPlaylist;
-
+  // console.log(items);
   // use search
   const items = UseSearch(searchString, playlistItems, "title");
 

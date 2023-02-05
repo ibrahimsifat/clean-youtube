@@ -29,7 +29,6 @@ const playlistModel = persist(
       );
       video["note"] = payload.note;
       state.runningVideo = video;
-      // state.video = video;
     }),
     addToFavorite: action((state, playlistId) => {
       state.data[playlistId]["isFavorite"] = true;
@@ -37,12 +36,16 @@ const playlistModel = persist(
     removeToFavorite: action((state, playlistId) => {
       state.data[playlistId]["isFavorite"] = false;
     }),
-    getVideoById: action((state, videoId) => {
-      const playlistId = state.currentPlaylist.playlistId;
-      const video = state.data[playlistId].playlistItems.find(
-        (item) => item.contentDetails.videoId === videoId
-      );
-      state.runningVideo = video;
+    setRunningVideoById: action((state, videoId) => {
+      if (videoId) {
+        const playlistId = state.currentPlaylist.playlistId;
+        const video = state.data[playlistId].playlistItems.find(
+          (item) => item.contentDetails.videoId === videoId
+        );
+        state.runningVideo = video;
+        return;
+      }
+      state.runningVideo = {};
     }),
     getPlaylists: thunk(async (action, playlistId, { getState }) => {
       if (getState().data[playlistId]) {
