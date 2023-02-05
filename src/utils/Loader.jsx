@@ -61,49 +61,49 @@ const SingleLoader2 = () => {
         >
           <div
             data-placeholder
-            class="h-52 w-full overflow-hidden relative bg-gray-200"
+            className="h-52 w-full overflow-hidden relative bg-gray-200"
           ></div>
         </div>
 
         <div className=" dark:bg-gray-900 bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal w-full">
           <div className="mb-8">
-            <div class="flex flex-col p-4">
-              <div class="flex">
+            <div className="flex flex-col p-4">
+              <div className="flex">
                 <div
                   data-placeholder
-                  class=" flex h-5 w-5 overflow-hidden relative bg-gray-200 mr-1"
+                  className=" flex h-5 w-5 overflow-hidden relative bg-gray-200 mr-1"
                 ></div>
                 <div
                   data-placeholder
-                  class="flex h-5 w-48 overflow-hidden relative bg-gray-200"
+                  className="flex h-5 w-48 overflow-hidden relative bg-gray-200"
                 ></div>
               </div>
-              <div class="flex mt-1">
+              <div className="flex mt-1">
                 <div
                   data-placeholder
-                  class="flex h-5 w-5 overflow-hidden relative bg-gray-200 mr-1"
+                  className="flex h-5 w-5 overflow-hidden relative bg-gray-200 mr-1"
                 ></div>
                 <div
                   data-placeholder
-                  class="flex h-5 w-48 overflow-hidden relative bg-gray-200"
+                  className="flex h-5 w-48 overflow-hidden relative bg-gray-200"
                 ></div>
               </div>
             </div>
           </div>
           <div className="flex items-center justify-between">
-            <div class="flex justify-between items-center p-4 w-full">
+            <div className="flex justify-between items-center p-4 w-full">
               <div
                 data-placeholder
-                class="mr-2 h-12 w-12 rounded-full  overflow-hidden relative bg-gray-200"
+                className="mr-2 h-12 w-12 rounded-full  overflow-hidden relative bg-gray-200"
               ></div>
 
               <div
                 data-placeholder
-                class="mb-2 h-5 w-20 overflow-hidden relative bg-gray-200"
+                className="mb-2 h-5 w-20 overflow-hidden relative bg-gray-200"
               ></div>
               <div
                 data-placeholder
-                class="mb-2 h-5 w-4 rounded-md overflow-hidden relative bg-gray-200"
+                className="mb-2 h-5 w-4 rounded-md overflow-hidden relative bg-gray-200"
               ></div>
             </div>
           </div>

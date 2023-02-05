@@ -49,7 +49,7 @@ const playlistModel = persist(
     }),
     getPlaylists: thunk(async (action, playlistId, { getState }) => {
       if (getState().data[playlistId]) {
-        console.log("FETCH CANCEL");
+        // console.log("FETCH CANCEL");
         return;
       }
       try {

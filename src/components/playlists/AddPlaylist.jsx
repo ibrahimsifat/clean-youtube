@@ -33,7 +33,6 @@ function AddPlaylist({ modalIsOpen, setIsOpen }) {
       inputPlaylistId.startsWith("FL") ||
       inputPlaylistId.startsWith("LP")
     ) {
-      console.log("outside", inputPlaylistId);
       getPlaylists(inputPlaylistId);
       setIsOpen(false);
     } else {
