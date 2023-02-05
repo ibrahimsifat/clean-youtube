@@ -1,4 +1,4 @@
-import { useStoreState } from "easy-peasy";
+import { useStoreActions, useStoreState } from "easy-peasy";
 import React, { useState } from "react";
 import { AiFillDelete } from "react-icons/ai";
 import { MdFavorite, MdFavoriteBorder } from "react-icons/md";
@@ -9,6 +9,13 @@ import DeletePlaylist from "./DeletePlaylist";
 const PlaylistCard = ({ playlist }) => {
   const { layout } = useStoreState((state) => state.playlistLayout);
 
+  const { addFavorite, removeFavorite } = useStoreActions(
+    (state) => state.favorite
+  );
+  const { addToFavorite, removeToFavorite } = useStoreActions(
+    (state) => state.playlist
+  );
+
   const {
     channelTitle,
     playlistDescription,
@@ -17,6 +24,7 @@ const PlaylistCard = ({ playlist }) => {
     playlistId,
     matchSearch,
     channelData,
+    isFavorite,
   } = playlist || {};
   const { thumbnails, url: channelUrl } = channelData;
   console.log(channelData);
@@ -26,6 +34,17 @@ const PlaylistCard = ({ playlist }) => {
     setIsOpen(true);
   }
   // console.log("playlist", channelData?.thumbnails?.url);
+
+  // handleAddToFavorite
+  const handleAddToFavorite = (playlistId) => {
+    addFavorite(playlistId);
+    addToFavorite(playlistId);
+  };
+  const handleRemoveToFavorite = (playlistId) => {
+    console.log(playlistId);
+    removeFavorite(playlistId);
+    removeToFavorite(playlistId);
+  };
   return (
     <div className="  dark:text-white sm:m-0 m-4">
       <div
@@ -49,33 +68,35 @@ const PlaylistCard = ({ playlist }) => {
 
         <div className=" dark:bg-gray-900 bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal w-full">
           <div className="mb-8">
-            <p className="text-sm dark:text-white text-gray-600 flex items-center">
-              <svg
-                className="fill-current text-gray-500 w-3 h-3 mr-2"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 20 20"
-              >
-                <path d="M4 8V6a6 6 0 1 1 12 0v2h1a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-8c0-1.1.9-2 2-2h1zm5 6.73V17h2v-2.27a2 2 0 1 0-2 0zM7 6v2h6V6a3 3 0 0 0-6 0z" />
-              </svg>
-              Members only
-            </p>
-            <Link to={`/playlist/${playlistId}`}>
-              <div className=" font-bold text-md mb-2 h-14">
+            <Link to={`/playlist/${playlistId}`} className="space-y-4">
+              <div className=" font-bold text-md mb-2 h-8 ">
                 {playlistTitle?.slice(0, 90)}
               </div>
+              {layout == "list" && (
+                <div className=" font-semibold text-md text-gray-600 mb-2">
+                  {playlistDescription?.slice(0, 200)}
+                </div>
+              )}
             </Link>
           </div>
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-between md:h-10 h-8 pb-2">
             <ChannelProfile
               channelUrl={channelUrl}
               channelTitle={channelTitle}
               thumbnails={thumbnails}
             />
             <div className="flex justify-center items-center md:space-x-6 space-x-3 cursor-pointer">
-              {"hello" ? (
-                <MdFavoriteBorder size={24} />
+              {isFavorite === true ? (
+                <MdFavorite
+                  size={24}
+                  onClick={() => handleRemoveToFavorite(playlistId)}
+                />
               ) : (
-                <MdFavorite size={24} />
+                <MdFavoriteBorder
+                  size={24}
+                  className="hover:fill-red-500 duration-200 cursor-pointer"
+                  onClick={() => handleAddToFavorite(playlistId)}
+                />
               )}
               <AiFillDelete
                 size={24}

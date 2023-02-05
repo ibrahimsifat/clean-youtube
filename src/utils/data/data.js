@@ -26,18 +26,11 @@
 export const navData = [
   {
     level: "Recent",
-
     path: "recent",
   },
   {
     level: "Favorites",
-
-    link: "favorites",
-  },
-  {
-    level: "Search",
-
-    link: "search",
+    path: "favorites",
   },
 ];
 const mediaQuery = window.matchMedia("(max-width: 768px)");

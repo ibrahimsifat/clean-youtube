@@ -22,14 +22,14 @@ const VideoListPlayer = () => {
   //   (video) => video.contentDetails.videoId !== videoId
   // );
 
-  const othersVideo = playlistItems?.reduce((acc, cur) => {
-    if (cur.contentDetails.videoId === videoId) {
-      cur["clicked"] = true;
-    } else {
-      return [...acc, cur];
-    }
-    return acc;
-  }, []);
+  // const othersVideo = playlistItems?.reduce((acc, cur) => {
+  //   if (cur.contentDetails.videoId === videoId) {
+  //     cur["clicked"] = true;
+  //   } else {
+  //     return [...acc, cur];
+  //   }
+  //   return acc;
+  // }, []);
 
   // console.log(" playingVideo", playingVideo);
   // console.log("othersVideo", othersVideo);
@@ -39,7 +39,7 @@ const VideoListPlayer = () => {
       <VideoPlayer />
       <PlayingVideoDetails runningVideo={runningVideo} />
 
-      <OtherVideoList ordersItems={othersVideo} />
+      <OtherVideoList ordersItems={playlistItems} />
     </div>
   );
 };

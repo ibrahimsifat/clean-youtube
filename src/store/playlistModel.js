@@ -29,7 +29,13 @@ const playlistModel = persist(
       );
       video["note"] = payload.note;
       state.runningVideo = video;
-      state.video = video;
+      // state.video = video;
+    }),
+    addToFavorite: action((state, playlistId) => {
+      state.data[playlistId]["isFavorite"] = true;
+    }),
+    removeToFavorite: action((state, playlistId) => {
+      state.data[playlistId]["isFavorite"] = false;
     }),
     getVideoById: action((state, videoId) => {
       const playlistId = state.currentPlaylist.playlistId;

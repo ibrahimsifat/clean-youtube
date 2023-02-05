@@ -8,32 +8,36 @@ const VideoCard = ({ playingVideo }) => {
   const { layout } = useStoreState((state) => state.playlistLayout);
   const {
     currentPlaylist: { channelData },
+    runningVideo,
   } = useStoreState((state) => state.playlist);
+
   const {
     thumbnail,
     title,
     matchSearch,
-    clicked,
+    description,
     contentDetails: { videoId },
   } = playingVideo || {};
-  // console.log(runningVideo.contentDetails.videoId, videoId);
+
+  const isThisVideoRunning = runningVideo.contentDetails.videoId === videoId;
   const { thumbnails, url: channelUrl, channelTitle } = channelData;
-  console.log("sd", channelData);
+
   return (
     <div className="  dark:text-white sm:m-0 m-4 ">
       <div
         className={`
          ${matchSearch && "border-4 border-red-400"}
+         ${
+           isThisVideoRunning &&
+           "animate-border from-teal-400 via-rose-400 to-teal-400 bg-[length:400%_400%] p-1.5 transition bg-gradient-to-r rounded"
+         }
      ${layout == "list" ? " w-full lg:max-w-full flex " : ""}`}
       >
         <Link to={`/video/${videoId}`}>
           <img
             src={thumbnail?.url}
             alt={title}
-            className={`${
-              clicked &&
-              " animate-border from-teal-700 via-purple-700 to-pink-700 bg-[length:400%_400%] p-.5 transition bg-gradient-to-r"
-            }
+            className={`${isThisVideoRunning && " bg-red-500"}
               ${
                 layout == "list"
                   ? "w-full h-full lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden"
@@ -44,20 +48,15 @@ const VideoCard = ({ playingVideo }) => {
 
         <div className=" dark:bg-gray-900 bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal w-full">
           <div className="mb-8">
-            <p className="text-sm dark:text-white text-gray-600 flex items-center">
-              <svg
-                className="fill-current text-gray-500 w-3 h-3 mr-2"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 20 20"
-              >
-                <path d="M4 8V6a6 6 0 1 1 12 0v2h1a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-8c0-1.1.9-2 2-2h1zm5 6.73V17h2v-2.27a2 2 0 1 0-2 0zM7 6v2h6V6a3 3 0 0 0-6 0z" />
-              </svg>
-              Members only
-            </p>
             <Link to={`/video/${videoId}`}>
-              <div className=" font-bold text-md mb-2 h-14">
-                {title.slice(0, 60)}
+              <div className=" font-bold text-md mb-2 h-8">
+                {title.slice(0, 90)}
               </div>
+              {layout == "list" && (
+                <div className=" font-semibold text-md text-gray-600 mb-2">
+                  {description?.slice(0, 200)}
+                </div>
+              )}
             </Link>
           </div>
           <div className="flex items-center justify-between">

@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { navData } from "../../utils/data/data";
 import AddPlaylistBtn from "./AddPlaylistBtn";
 import Logo from "./Logo";
@@ -10,11 +11,11 @@ const Navbar = () => {
         {/* <!-- logo --> */}
         <Logo />
 
-        <div className="md:flex justify-end items-center relative hidden lg:space-x-8 md:space-x-4">
+        <div className="md:flex justify-end items-center relative hidden lg:space-x-8 md:space-x-4 cursor-pointer">
           {navData.map((item, index) => (
-            <p className="" key={index}>
+            <Link to={item.path} className="font-bold text-md " key={index}>
               {item.level}
-            </p>
+            </Link>
           ))}
         </div>
 
