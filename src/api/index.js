@@ -22,6 +22,7 @@ const getChannelData = async (channelId) => {
     customUrl,
     country,
     description,
+    title,
     thumbnails: { default: channelThumbnails },
   } = items[0].snippet;
   return {
@@ -29,6 +30,7 @@ const getChannelData = async (channelId) => {
     country,
     thumbnails: channelThumbnails,
     description,
+    channelTitle: title,
   };
 };
 const getPlaylist = async (playlistId) => {

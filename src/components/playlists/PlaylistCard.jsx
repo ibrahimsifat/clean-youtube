@@ -4,6 +4,7 @@ import { AiFillDelete } from "react-icons/ai";
 import { MdFavorite, MdFavoriteBorder } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { Tooltip } from "react-tooltip";
+import ChannelProfile from "../../utils/channelProfile";
 import DeletePlaylist from "./DeletePlaylist";
 const PlaylistCard = ({ playlist }) => {
   const { layout } = useStoreState((state) => state.playlistLayout);
@@ -15,13 +16,16 @@ const PlaylistCard = ({ playlist }) => {
     playlistTitle,
     playlistId,
     matchSearch,
+    channelData,
   } = playlist || {};
+  const { thumbnails, url: channelUrl } = channelData;
+  console.log(channelData);
   const [modalIsOpen, setIsOpen] = useState(false);
 
   function openModal() {
     setIsOpen(true);
   }
-  console.log(playlist, channelTitle);
+  // console.log("playlist", channelData?.thumbnails?.url);
   return (
     <div className="  dark:text-white sm:m-0 m-4">
       <div
@@ -62,17 +66,12 @@ const PlaylistCard = ({ playlist }) => {
             </Link>
           </div>
           <div className="flex items-center justify-between">
-            <div className="flex items-center">
-              <img
-                className="w-10 h-10 rounded-full mr-4"
-                src="https://yt3.googleusercontent.com/_laaRTCwOZ6hxLgPmjN8HnzzIlhWqyiwbD2kuofkSLx51FImoP0esGJVxyZm7oZ46Yby9MVz7g=s88-c-k-c0x00ffffff-no-rj"
-                alt="Avatar of Writer"
-              />
-              <div className="text-sm">
-                <p className="leading-none">{channelTitle}</p>
-              </div>
-            </div>
-            <div className="flex justify-center items-center md:space-x-6 space-x-3">
+            <ChannelProfile
+              channelUrl={channelUrl}
+              channelTitle={channelTitle}
+              thumbnails={thumbnails}
+            />
+            <div className="flex justify-center items-center md:space-x-6 space-x-3 cursor-pointer">
               {"hello" ? (
                 <MdFavoriteBorder size={24} />
               ) : (

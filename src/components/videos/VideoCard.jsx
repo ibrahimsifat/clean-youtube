@@ -3,16 +3,24 @@ import React from "react";
 import { MdFavorite, MdFavoriteBorder } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { Tooltip } from "react-tooltip";
+import ChannelProfile from "../../utils/channelProfile";
 const VideoCard = ({ playingVideo }) => {
   const { layout } = useStoreState((state) => state.playlistLayout);
+  const {
+    currentPlaylist: { channelData },
+  } = useStoreState((state) => state.playlist);
   const {
     thumbnail,
     title,
     matchSearch,
+    clicked,
     contentDetails: { videoId },
-  } = playingVideo;
+  } = playingVideo || {};
+  // console.log(runningVideo.contentDetails.videoId, videoId);
+  const { thumbnails, url: channelUrl, channelTitle } = channelData;
+  console.log("sd", channelData);
   return (
-    <div className="  dark:text-white sm:m-0 m-4">
+    <div className="  dark:text-white sm:m-0 m-4 ">
       <div
         className={`
          ${matchSearch && "border-4 border-red-400"}
@@ -22,11 +30,15 @@ const VideoCard = ({ playingVideo }) => {
           <img
             src={thumbnail?.url}
             alt={title}
-            className={
-              layout == "list"
-                ? "w-full h-full lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden"
-                : "w-full  h-auto lg:w-full flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden"
+            className={`${
+              clicked &&
+              " animate-border from-teal-700 via-purple-700 to-pink-700 bg-[length:400%_400%] p-.5 transition bg-gradient-to-r"
             }
+              ${
+                layout == "list"
+                  ? "w-full h-full lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden"
+                  : "w-full  h-auto lg:w-full flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden"
+              }`}
           />
         </Link>
 
@@ -49,16 +61,11 @@ const VideoCard = ({ playingVideo }) => {
             </Link>
           </div>
           <div className="flex items-center justify-between">
-            <div className="flex items-center">
-              <img
-                className="w-10 h-10 rounded-full mr-4"
-                src="https://yt3.googleusercontent.com/_laaRTCwOZ6hxLgPmjN8HnzzIlhWqyiwbD2kuofkSLx51FImoP0esGJVxyZm7oZ46Yby9MVz7g=s88-c-k-c0x00ffffff-no-rj"
-                alt="Avatar of Writer"
-              />
-              <div className="text-sm">
-                <p className="leading-none">{"channelTitle"}</p>
-              </div>
-            </div>
+            <ChannelProfile
+              channelUrl={channelUrl}
+              channelTitle={channelTitle}
+              thumbnails={thumbnails}
+            />
             {"hello" ? (
               <MdFavoriteBorder
                 size={24}

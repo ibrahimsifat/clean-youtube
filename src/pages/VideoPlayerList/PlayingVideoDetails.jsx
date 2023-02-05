@@ -1,3 +1,4 @@
+import { useStoreState } from "easy-peasy";
 import React from "react";
 import ShowMoreText from "react-show-more-text";
 import VideoNote from "../../components/videos/videoNote/VideoNote";
@@ -8,22 +9,30 @@ const PlayingVideoDetails = ({ runningVideo }) => {
     description,
     contentDetails: { videoId },
   } = runningVideo || {};
-
+  const { currentPlaylist } = useStoreState((state) => state.playlist);
+  console.log(currentPlaylist);
+  const {
+    channelTitle,
+    channelData: { thumbnails, url },
+  } = currentPlaylist;
+  console.log(url);
   return (
     <div className="space-y-4 dark:text-white font-bold ">
       <p className="md:text-2xl text-xl font-bold my-5">{title}</p>
       <div className="flex justify-between items-center">
-        <div className="flex items-center">
-          <img
-            className="w-10 h-10 rounded-full mr-4"
-            src="https://yt3.googleusercontent.com/_laaRTCwOZ6hxLgPmjN8HnzzIlhWqyiwbD2kuofkSLx51FImoP0esGJVxyZm7oZ46Yby9MVz7g=s88-c-k-c0x00ffffff-no-rj"
-            alt="Avatar of Writer"
-          />
-          <div className="text-md">
-            <p className="leading-none">{"channelTitle"}</p>
-            <p className="leading-none text-sm">{"channelTitle"}</p>
+        <a href={url} target="_blank">
+          <div className="flex items-center cursor-pointer">
+            <img
+              className="w-10 h-10 rounded-full mr-4"
+              src={thumbnails?.url}
+              alt="Avatar of Writer"
+            />
+            <div className="text-md">
+              <p className="leading-none">{channelTitle}</p>
+              {/* <p className="leading-none text-sm">{"channelTitle"}</p> */}
+            </div>
           </div>
-        </div>
+        </a>
         <VideoNote videoId={videoId} runningVideo={runningVideo} />
       </div>
       <ShowMoreText

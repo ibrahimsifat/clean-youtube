@@ -18,9 +18,18 @@ const VideoListPlayer = () => {
     currentPlaylist: { playlistItems },
   } = useStoreState((state) => state.playlist);
 
-  const othersVideo = playlistItems?.filter(
-    (video) => video.contentDetails.videoId !== videoId
-  );
+  // const othersVideo = playlistItems?.filter(
+  //   (video) => video.contentDetails.videoId !== videoId
+  // );
+
+  const othersVideo = playlistItems?.reduce((acc, cur) => {
+    if (cur.contentDetails.videoId === videoId) {
+      cur["clicked"] = true;
+    } else {
+      return [...acc, cur];
+    }
+    return acc;
+  }, []);
 
   // console.log(" playingVideo", playingVideo);
   // console.log("othersVideo", othersVideo);

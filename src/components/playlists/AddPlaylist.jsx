@@ -38,6 +38,7 @@ function AddPlaylist({ modalIsOpen, setIsOpen }) {
           <form className="mt-6 w-full " onSubmit={handleSubmit}>
             <div className="w-full flex">
               <input
+                autoFocus
                 className=" py-2 px-4 rounded border-2 border-gray-400 focus:border-gray-700 text-gray-800  bg-white focus:outline-none w-full duration-300"
                 placeholder="PL_lakanmbnwerttyutwewekdfhas_drtyula"
                 onChange={(e) => setInputPlaylistId(e.target.value)}
