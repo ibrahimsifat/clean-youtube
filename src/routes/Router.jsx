@@ -23,7 +23,7 @@ const Router = () => {
   const { width } = useWindowDimensions();
 
   return (
-    <div className="relative flex min-h-screen flex-col  bg-gradient-to-r from-rose-100 to-teal-100 dark:bg-gradient-to-l dark:from-black dark:via-neutral-900 dark:to-black">
+    <div className="relative flex min-h-screen flex-col  bg-gradient-to-r from-rose-50 to-teal-50 dark:bg-gradient-to-l dark:from-black dark:via-neutral-900 dark:to-black">
       <Navbar />
       <div className="container mx-auto md:px-10">
         <React.Suspense fallback={<Loader />}>

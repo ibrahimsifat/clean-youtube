@@ -1,5 +1,6 @@
 import { useStoreActions } from "easy-peasy";
 import React from "react";
+import { debounce } from "../../utils/debounce";
 const SearchBar = () => {
   // search projects
   const { search } = useStoreActions((actions) => actions.playlist);
@@ -8,18 +9,9 @@ const SearchBar = () => {
     search(e.target.value);
   };
 
-  const debounce = (fn, delay) => {
-    let timerId;
-    return (...args) => {
-      clearTimeout(timerId);
-      timerId = setTimeout(() => {
-        fn(...args);
-      }, delay);
-    };
-  };
   return (
     <div className="relative rounded-full bg-white shadow-xl ring-1 ring-gray-900/5  ">
-      <div className="mx-auto w-full">
+      <div className="mx-auto ">
         <form action="" className="relative mx-auto w-full">
           <input
             type="search"

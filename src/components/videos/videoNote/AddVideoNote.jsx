@@ -3,9 +3,10 @@ import React, { useState } from "react";
 import Modal from "react-modal";
 import { useParams } from "react-router-dom";
 import { customModelStyles } from "../../../utils/data/data";
+import { debounce } from "../../../utils/debounce";
 import SubmitPlaylistButton from "../../UI/SubmitPlaylistButton";
 const AddVideoNote = ({ modalIsOpen, setIsOpen }) => {
-  const { takeNote } = useStoreActions((actions) => actions.playlist);
+  const { takeANote } = useStoreActions((actions) => actions.notes);
   const [content, setContent] = useState("");
 
   const { videoId } = useParams();
@@ -14,20 +15,11 @@ const AddVideoNote = ({ modalIsOpen, setIsOpen }) => {
     setIsOpen(false);
   }
 
-  const debounce = (fn, delay) => {
-    let timerId;
-    return (...args) => {
-      clearTimeout(timerId);
-      timerId = setTimeout(() => {
-        fn(...args);
-      }, delay);
-    };
-  };
   const handleChange = (event) => {
     setContent(event.target.value);
   };
   const handleTakeNote = () => {
-    takeNote({ videoId, note: content });
+    takeANote({ videoId, note: content });
     setIsOpen(false);
   };
 

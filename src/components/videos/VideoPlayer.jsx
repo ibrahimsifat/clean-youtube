@@ -1,10 +1,10 @@
 import { useStoreState } from "easy-peasy";
 import React, { useRef, useState } from "react";
 import { useParams } from "react-router";
-import { Link } from "react-router-dom";
 import YouTube from "react-youtube";
+import VideoPlayerDetails from "../../pages/VideoPlayerList/VideoPlayerDetails";
 import { calculateTime } from "../../utils/time";
-import PrevNextBtn from "../UI/PrevNextBtn";
+import SwitchVideo from "./SwitchVideo";
 
 const VideoPlayer = () => {
   const { videoId } = useParams();
@@ -34,9 +34,9 @@ const VideoPlayer = () => {
 
     return;
   };
-  console.log(calculateTime(event?.target.getDuration()));
-  console.log(calculateTime(event?.target.getCurrentTime()));
-  console.log(event?.target.nextVideo());
+  const runningVideoDuration = calculateTime(event?.target.getDuration());
+  const currentPlayingTime = calculateTime(event?.target.getCurrentTime());
+  console.log(event?.target.getVideoData());
 
   const opts = {
     height: "100%",
@@ -49,12 +49,7 @@ const VideoPlayer = () => {
   };
   // next and previous video handlers
   const { playlistItems } = currentPlaylist || {};
-  // playlistItems?.forEach((video) => {
-  //   if (video.contentDetails.videoId === videoId) {
 
-  //     console.log(video);
-  //   }
-  // });
   const currentPlaylistIndex = playlistItems?.findIndex(
     (video) => video?.contentDetails.videoId === videoId
   );
@@ -62,7 +57,17 @@ const VideoPlayer = () => {
   const prevVideoId = playlistItems[prevPlaylistIndex]?.contentDetails.videoId;
   const nextPlaylistIndex = currentPlaylistIndex + 1;
   const nextVideoId = playlistItems[nextPlaylistIndex]?.contentDetails.videoId;
+  const runningVideo =
+    playlistItems[currentPlaylistIndex]?.contentDetails.videoId;
+  console.log();
 
+  // running video details
+  const {
+    channelTitle,
+    channelData: { thumbnails, url },
+  } = currentPlaylist;
+
+  const { title } = runningVideo || {};
   return (
     <>
       <YouTube
@@ -76,18 +81,29 @@ const VideoPlayer = () => {
         // onEnd={onEnd}
         ref={playerRef}
       />
-      <div className="flex justify-between items-center my-3">
-        {prevVideoId && (
-          <Link to={`/video/${prevVideoId}`}>
-            <PrevNextBtn prev level="Prev" />
-          </Link>
-        )}
-        {nextVideoId && (
-          <Link to={`/video/${nextVideoId}`}>
-            <PrevNextBtn level="Next" />
-          </Link>
-        )}
+      <SwitchVideo prevVideoId={prevVideoId} nextVideoId={nextVideoId} />
+      <div className="space-y-4 dark:text-white font-bold ">
+        <p className="md:text-2xl text-xl font-bold my-5">{title}</p>
+        <div className="flex justify-between items-center">
+          <a href={url} target="_blank">
+            <div className="flex items-center cursor-pointer">
+              <img
+                className="w-10 h-10 rounded-full mr-4"
+                src={thumbnails?.url}
+                alt="Avatar of Writer"
+              />
+              <div className="text-md">
+                <p className="leading-none">{channelTitle}</p>
+                {/* <p className="leading-none text-sm">{"channelTitle"}</p> */}
+              </div>
+            </div>
+          </a>
+        </div>
       </div>
+      <VideoPlayerDetails
+        ordersItems={playlistItems}
+        currentPlayingTime={currentPlayingTime}
+      />
     </>
   );
 };

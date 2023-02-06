@@ -27,7 +27,12 @@ const playlistModel = persist(
       const video = state.data[playlistId].playlistItems.find(
         (item) => item.contentDetails.videoId === videoId
       );
-      video["note"] = payload.note;
+      console.log(video["note"]);
+      if (video["note"]) {
+        video["note"].push(payload);
+      } else {
+        video["note"] = [payload];
+      }
       state.runningVideo = video;
     }),
     addToFavorite: action((state, playlistId) => {

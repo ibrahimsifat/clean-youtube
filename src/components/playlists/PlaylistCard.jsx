@@ -44,7 +44,7 @@ const PlaylistCard = ({ playlist }) => {
     removeToFavorite(playlistId);
   };
   return (
-    <div className="  dark:text-white sm:m-0 m-4">
+    <div className="dark:text-white sm:m-0 m-4 shadow-md">
       <div
         className={`
         ${matchSearch && "border-4 border-rose-400"}
@@ -57,7 +57,7 @@ const PlaylistCard = ({ playlist }) => {
             alt={playlistTitle}
             className={
               layout == "list"
-                ? "w-full h-full lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden"
+                ? "w-96 h-full  flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center"
                 : "w-full  h-auto lg:w-full flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden"
             }
           />
@@ -71,7 +71,7 @@ const PlaylistCard = ({ playlist }) => {
               </div>
               {layout == "list" && (
                 <div className=" font-semibold text-md text-gray-600 mb-2">
-                  {playlistDescription?.slice(0, 200)}
+                  {playlistDescription?.slice(0, 150)}
                 </div>
               )}
             </Link>
@@ -96,12 +96,14 @@ const PlaylistCard = ({ playlist }) => {
                 />
               )}
 
-              <AiFillDelete
-                size={24}
-                color="red"
-                // onClick={() => deletePlaylist(playlistId)}
-                onClick={() => openModal()}
-              />
+              {!isFavorite && (
+                <AiFillDelete
+                  size={24}
+                  color="red"
+                  // onClick={() => deletePlaylist(playlistId)}
+                  onClick={() => openModal()}
+                />
+              )}
             </div>
             <Tooltip
               id="my-element"

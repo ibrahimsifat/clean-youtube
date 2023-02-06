@@ -50,12 +50,12 @@ const VideoCard = ({ playingVideo }) => {
         <div className=" dark:bg-gray-900 bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal w-full">
           <div className="mb-8">
             <Link to={`/video/${videoId}`}>
-              <div className=" font-bold text-md mb-2 h-8">
+              <div className=" font-bold text-md mb-3 h-12">
                 {title.slice(0, 90)}
               </div>
               {layout == "list" && (
-                <div className=" font-semibold text-md text-gray-600 mb-2">
-                  {description?.slice(0, 200)}
+                <div className=" font-semibold text-md text-gray-600 ">
+                  {description?.slice(0, 100)}
                 </div>
               )}
             </Link>

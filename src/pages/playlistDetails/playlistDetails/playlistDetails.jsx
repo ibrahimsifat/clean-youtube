@@ -1,6 +1,7 @@
 import { useStoreActions, useStoreState } from "easy-peasy";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import PlaylistProfile from "../../../components/playlists/PlaylistProfile";
 import SemiNavigation from "../../../components/SemiNavigation/SemiNavigation";
 import VideoCard from "../../../components/videos/VideoCard";
 import UsePagination from "../../../hooks/usePagination";
@@ -46,6 +47,7 @@ const PlaylistDetails = () => {
 
   return (
     <>
+      <PlaylistProfile currentPlaylist={currentPlaylist} />
       <SemiNavigation />
       <div
         className={

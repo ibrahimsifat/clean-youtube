@@ -4,11 +4,12 @@ const PrevNextBtn = ({ prev, level }) => {
   return (
     <button
       type="button"
-      class="bg-gray-800 text-white rounded-r-md py-2 border-l border-gray-200 hover:bg-red-700 hover:text-white px-3"
+      class={`bg-red-800 text-white py-2 hover:bg-red-500  px-3 ${
+        prev ? "rounded-l-lg " : "rounded-r-lg "
+      }`}
     >
       <div class="flex flex-row align-middle">
-        <span class="mr-2">{level}</span>
-        {prev ? (
+        {prev && (
           <svg
             class="w-5 mr-2"
             fill="currentColor"
@@ -21,7 +22,9 @@ const PrevNextBtn = ({ prev, level }) => {
               clip-rule="evenodd"
             ></path>
           </svg>
-        ) : (
+        )}
+        <span class="mr-2">{level}</span>
+        {!prev && (
           <svg
             class="w-5 ml-2"
             fill="currentColor"

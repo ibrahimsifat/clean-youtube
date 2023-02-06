@@ -47,6 +47,7 @@ const getPlaylist = async (playlistId) => {
     thumbnails,
     channelId,
     channelTitle,
+    publishedAt,
   } = data?.items[0]?.snippet;
 
   // get channel data
@@ -70,6 +71,7 @@ const getPlaylist = async (playlistId) => {
   return {
     playlistId,
     playlistTitle,
+    publishedAt,
     playlistDescription,
     playlistThumbnail: thumbnails.high,
     channelId,
