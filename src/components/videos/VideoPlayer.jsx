@@ -5,6 +5,7 @@ import YouTube from "react-youtube";
 import VideoPlayerDetails from "../../pages/VideoPlayerList/VideoPlayerDetails";
 import { calculateTime } from "../../utils/time";
 import SwitchVideo from "./SwitchVideo";
+import VideoDetails from "./VideoDetails";
 
 const VideoPlayer = () => {
   const { videoId } = useParams();
@@ -36,7 +37,7 @@ const VideoPlayer = () => {
   };
   const runningVideoDuration = calculateTime(event?.target.getDuration());
   const currentPlayingTime = calculateTime(event?.target.getCurrentTime());
-  console.log(event?.target.getVideoData());
+  // console.log(event?.target.getVideoData());
 
   const opts = {
     height: "100%",
@@ -67,7 +68,6 @@ const VideoPlayer = () => {
     channelData: { thumbnails, url },
   } = currentPlaylist;
 
-  const { title } = runningVideo || {};
   return (
     <>
       <YouTube
@@ -82,24 +82,11 @@ const VideoPlayer = () => {
         ref={playerRef}
       />
       <SwitchVideo prevVideoId={prevVideoId} nextVideoId={nextVideoId} />
-      <div className="space-y-4 dark:text-white font-bold ">
-        <p className="md:text-2xl text-xl font-bold my-5">{title}</p>
-        <div className="flex justify-between items-center">
-          <a href={url} target="_blank">
-            <div className="flex items-center cursor-pointer">
-              <img
-                className="w-10 h-10 rounded-full mr-4"
-                src={thumbnails?.url}
-                alt="Avatar of Writer"
-              />
-              <div className="text-md">
-                <p className="leading-none">{channelTitle}</p>
-                {/* <p className="leading-none text-sm">{"channelTitle"}</p> */}
-              </div>
-            </div>
-          </a>
-        </div>
-      </div>
+      <VideoDetails
+        thumbnails={thumbnails}
+        channelTitle={channelTitle}
+        url={url}
+      />
       <VideoPlayerDetails
         ordersItems={playlistItems}
         currentPlayingTime={currentPlayingTime}

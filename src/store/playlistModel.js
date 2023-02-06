@@ -1,6 +1,6 @@
 import { action, persist, thunk } from "easy-peasy";
+import { toast } from "react-toastify";
 import getPlaylist from "../api";
-
 const playlistModel = persist(
   {
     data: {},
@@ -17,9 +17,11 @@ const playlistModel = persist(
     }),
     addPlaylist: action((state, payload) => {
       state.data[payload.playlistId] = payload;
+      toast.success("Added playlist");
     }),
     deletePlaylist: action((state, playlistId) => {
       delete state.data[playlistId];
+      toast.warn("Deleted Playlist");
     }),
     takeNote: action((state, payload) => {
       const playlistId = state.currentPlaylist.playlistId;
@@ -27,19 +29,21 @@ const playlistModel = persist(
       const video = state.data[playlistId].playlistItems.find(
         (item) => item.contentDetails.videoId === videoId
       );
-      console.log(video["note"]);
       if (video["note"]) {
         video["note"].push(payload);
       } else {
         video["note"] = [payload];
       }
+
       state.runningVideo = video;
     }),
     addToFavorite: action((state, playlistId) => {
       state.data[playlistId]["isFavorite"] = true;
+      toast.success("Added To Favorite");
     }),
     removeToFavorite: action((state, playlistId) => {
       state.data[playlistId]["isFavorite"] = false;
+      toast.warning("Remove To Favorite");
     }),
     setRunningVideoById: action((state, videoId) => {
       if (videoId) {
@@ -54,7 +58,7 @@ const playlistModel = persist(
     }),
     getPlaylists: thunk(async (action, playlistId, { getState }) => {
       if (getState().data[playlistId]) {
-        // console.log("FETCH CANCEL");
+        toast.warn("Playlist is Already Exists");
         return;
       }
       try {

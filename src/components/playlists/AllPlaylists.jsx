@@ -2,6 +2,7 @@ import { useStoreState } from "easy-peasy";
 import React from "react";
 import UseSearch from "../../hooks/useSearch";
 import SemiNavigation from "../SemiNavigation/SemiNavigation";
+import Heading from "../UI/Heading";
 import FavoritePlaylists from "./favorite/FavoritePlaylists";
 import PlaylistCard from "./PlaylistCard";
 import RecentPlaylists from "./recent/RecentPlaylist";
@@ -19,9 +20,8 @@ const AllPlaylists = ({ playlists }) => {
     <>
       {recentItems.length > 0 && <RecentPlaylists />}
       {favoriteItems.length > 0 && <FavoritePlaylists />}
-      <p className="mt-16 mb-6 sm:p-0 p-4 text-3xl md:text-4xl lg:text-4xl font-bold tracking-wider text-gray-600">
-        All Playlist-
-      </p>
+
+      <Heading level="All Playlist" />
       <div>
         <SemiNavigation />
       </div>

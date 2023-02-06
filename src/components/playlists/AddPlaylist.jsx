@@ -1,13 +1,16 @@
-import { useStoreActions } from "easy-peasy";
+import { useStoreActions, useStoreState } from "easy-peasy";
 import { useState } from "react";
 import { AiOutlinePlus } from "react-icons/ai";
 import Modal from "react-modal";
 import UseErrorModel from "../../hooks/useErrorModel";
 import { customModelStyles } from "../../utils/data/data";
+import { successNotify } from "../../utils/toast";
+import PrimaryBtn from "../UI/PrimaryBtn";
 
 function AddPlaylist({ modalIsOpen, setIsOpen }) {
   const [inputPlaylistId, setInputPlaylistId] = useState("");
   const { getPlaylists } = useStoreActions((action) => action.playlist);
+  const { isError } = useStoreState((action) => action.playlist);
 
   /// open error
   function closeModal() {
@@ -26,6 +29,7 @@ function AddPlaylist({ modalIsOpen, setIsOpen }) {
       if (playlistId.startsWith("PL_")) console.log("inside", playlistId);
       getPlaylists(playlistId);
       setIsOpen(false);
+      successNotify("Successfully added playlist");
       return;
     } else if (
       inputPlaylistId.startsWith("PL_") ||
@@ -34,6 +38,7 @@ function AddPlaylist({ modalIsOpen, setIsOpen }) {
       inputPlaylistId.startsWith("LP")
     ) {
       getPlaylists(inputPlaylistId);
+      successNotify("Successfully added playlist");
       setIsOpen(false);
     } else {
       ErrorOpenModal();
@@ -70,15 +75,12 @@ function AddPlaylist({ modalIsOpen, setIsOpen }) {
             </div>
 
             <div className="pt-6 text-center">
-              <button
-                className=" bg-gradient-to-r from-rose-100 to-teal-100  text-black font-bold rounded-md  hover:from-teal-100 hover:to-rose-100 duration-300 md:py-4 py-3 md:px-6 px-4 text-xl"
-                type="submit"
-              >
+              <PrimaryBtn type="submit">
                 <div className="flex justify-center items-center">
                   <AiOutlinePlus />
                   <span className="ml-1 md:text-xl text-md">Add Playlist</span>
                 </div>
-              </button>
+              </PrimaryBtn>
             </div>
           </form>
         </div>

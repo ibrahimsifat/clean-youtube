@@ -1,5 +1,6 @@
 import { useStoreState } from "easy-peasy";
 import React from "react";
+import Heading from "../../UI/Heading";
 import PlaylistCard from "../PlaylistCard";
 
 const RecentPlaylists = () => {
@@ -19,9 +20,7 @@ const RecentPlaylists = () => {
 
   return (
     <>
-      <p className="mt-16 mb-6 sm:p-0 p-4 text-2xl md:text-3xl lg:text-4xl font-bold tracking-wider text-gray-700">
-        Recent Visited-
-      </p>
+      <Heading level="Recent Visited" />
       <div
         className={
           layout == "list"

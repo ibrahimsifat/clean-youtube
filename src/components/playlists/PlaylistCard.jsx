@@ -86,6 +86,7 @@ const PlaylistCard = ({ playlist }) => {
               {isFavorite === true ? (
                 <MdFavorite
                   size={24}
+                  color="red"
                   onClick={() => handleRemoveToFavorite(playlistId)}
                 />
               ) : (

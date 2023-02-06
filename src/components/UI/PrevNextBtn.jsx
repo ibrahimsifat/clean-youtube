@@ -4,14 +4,14 @@ const PrevNextBtn = ({ prev, level }) => {
   return (
     <button
       type="button"
-      class={`bg-red-800 text-white py-2 hover:bg-red-500  px-3 ${
+      className={`border-2 border-[#4654A3] dark:text-white py-2 hover:bg-[#4654A3] hover:text-white px-3 duration-200 ${
         prev ? "rounded-l-lg " : "rounded-r-lg "
       }`}
     >
-      <div class="flex flex-row align-middle">
+      <div className="flex flex-row align-middle">
         {prev && (
           <svg
-            class="w-5 mr-2"
+            className="w-5 mr-2"
             fill="currentColor"
             viewBox="0 0 20 20"
             xmlns="http://www.w3.org/2000/svg"
@@ -23,10 +23,10 @@ const PrevNextBtn = ({ prev, level }) => {
             ></path>
           </svg>
         )}
-        <span class="mr-2">{level}</span>
+        <span className="mr-2 font-bold">{level}</span>
         {!prev && (
           <svg
-            class="w-5 ml-2"
+            className="w-5 ml-2"
             fill="currentColor"
             viewBox="0 0 20 20"
             xmlns="http://www.w3.org/2000/svg"

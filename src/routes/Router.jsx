@@ -1,9 +1,9 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
-import MobileNav from "../components/Navbar/Mobile-navbar/MobileNav";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import Navbar from "../components/Navbar/Navbar";
 import useWindowDimensions from "../hooks/useWindowDimensions";
-
 import Loader from "../utils/Loader";
 
 // pages
@@ -25,6 +25,7 @@ const Router = () => {
   return (
     <div className="relative flex min-h-screen flex-col  bg-gradient-to-r from-rose-50 to-teal-50 dark:bg-gradient-to-l dark:from-black dark:via-neutral-900 dark:to-black">
       <Navbar />
+      <ToastContainer autoClose={1000} />
       <div className="container mx-auto md:px-10">
         <React.Suspense fallback={<Loader />}>
           <Routes>
@@ -35,7 +36,7 @@ const Router = () => {
             <Route path="*" element={<NotFound />} />
           </Routes>
         </React.Suspense>
-        {width < 636 && <MobileNav />}
+        {/* {width < 636 && <MobileNav />} */}
       </div>
     </div>
   );
