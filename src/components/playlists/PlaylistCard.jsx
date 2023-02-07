@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import { AiFillDelete } from "react-icons/ai";
 import { MdFavorite, MdFavoriteBorder } from "react-icons/md";
 import { Link } from "react-router-dom";
-import { Tooltip } from "react-tooltip";
 import ChannelProfile from "../../utils/channelProfile";
 import DeletePlaylist from "./DeletePlaylist";
 const PlaylistCard = ({ playlist }) => {
@@ -108,12 +107,6 @@ const PlaylistCard = ({ playlist }) => {
                 />
               )}
             </div>
-            <Tooltip
-              id="my-element"
-              data-tooltip-content="Remove to Favorite"
-            ></Tooltip>{" "}
-            <Tooltip anchorId="my-element" />
-            <Tooltip anchorId="my-element2" />
           </div>
         </div>
       </div>

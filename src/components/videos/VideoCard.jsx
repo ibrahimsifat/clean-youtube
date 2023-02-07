@@ -2,7 +2,6 @@ import { useStoreState } from "easy-peasy";
 import React from "react";
 import { MdFavorite, MdFavoriteBorder } from "react-icons/md";
 import { Link } from "react-router-dom";
-import { Tooltip } from "react-tooltip";
 import ChannelProfile from "../../utils/channelProfile";
 const VideoCard = ({ playingVideo }) => {
   const { layout } = useStoreState((state) => state.playlistLayout);
@@ -74,12 +73,6 @@ const VideoCard = ({ playingVideo }) => {
             ) : (
               <MdFavorite size={24} />
             )}
-            <Tooltip
-              id="my-element"
-              data-tooltip-content="Remove to Favorite"
-            ></Tooltip>{" "}
-            <Tooltip anchorId="my-element" />
-            <Tooltip anchorId="my-element2" />
           </div>
         </div>
       </div>
