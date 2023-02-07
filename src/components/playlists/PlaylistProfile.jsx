@@ -9,7 +9,7 @@ const PlaylistProfile = ({ currentPlaylist }) => {
     channelTitle,
     playlistItems,
     publishedAt,
-  } = currentPlaylist;
+  } = currentPlaylist || {};
   const date = new Date(publishedAt);
   const options = {
     year: "numeric",
@@ -95,7 +95,7 @@ const PlaylistProfile = ({ currentPlaylist }) => {
         </div>
         <div className="w-full h-[250px]">
           <img
-            src={playlistThumbnail.url}
+            src={playlistThumbnail?.url}
             className="w-full h-full rounded-tl-lg rounded-tr-lg"
           />
         </div>
@@ -137,7 +137,7 @@ const PlaylistProfile = ({ currentPlaylist }) => {
             </a>
           </p>
 
-          <span className=" font-bold "> Videos: {playlistItems.length}</span>
+          <span className=" font-bold "> Videos: {playlistItems?.length}</span>
           <span className=" font-bold "> Published: {humanReadableDate}</span>
         </div>
       </div>

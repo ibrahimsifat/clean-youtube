@@ -6,16 +6,15 @@ const UsePagination = ({ items, itemsPerPage, handlePageClick, pageCount }) => {
     <>
       {items?.length > itemsPerPage && (
         <ReactPaginate
-          className="bg-gradient-to-r from-rose-100 via-white to-teal-100 bg-opacity-40 py-4 flex justify-center items-center font-bold my-10 space-x-3 text-md tm "
-          containerClassName="bg-green-400 text-red-200"
-          previousLinkClassName="px-2 py-4 rounded-l-full bg-gradient-to-r from-teal-200 to-transparent hover:bg-rose-100"
-          nextLinkClassName="px-2 py-4 rounded-r-full bg-gradient-to-r from-transparent to-teal-200  hover:bg-rose-100"
+          className="bg-gradient-to-r from-rose-50 dark:from-black via-white to-teal-50 bg-opacity-40  py-4 flex justify-center items-center font-bold my-10 space-x-3 text-md tm dark:text-white border-2 dark:border-none"
+          previousLinkClassName=" hover:bg-teal-100 px-3 py-2 rounded hover:dark:text-black"
+          nextLinkClassName=" hover:bg-teal-100 px-3 py-2 rounded hover:dark:text-black"
           disabledLinkClassName="invisible "
           nextClassName=""
           breakLinkClassName="font-bold text-2xl text-teal-400"
           breakClassName="-mt-3"
-          pageLinkClassName=" px-3 py-2   rounded-full"
-          activeLinkClassName="bg-teal-100   "
+          pageLinkClassName=" px-3 py-2 rounded"
+          activeLinkClassName="bg-teal-100  dark:text-black "
           breakLabel="..."
           nextLabel="next>"
           onPageChange={handlePageClick}

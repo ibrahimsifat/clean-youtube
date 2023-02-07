@@ -61,8 +61,8 @@ const playlistModel = persist(
         toast.warn("Playlist is Already Exists");
         return;
       }
+      action.setLoading(true);
       try {
-        action.setLoading(true);
         const playlist = await getPlaylist(playlistId);
         action.addPlaylist(playlist);
         action.setError("");

@@ -4,14 +4,13 @@ import { AiOutlinePlus } from "react-icons/ai";
 import Modal from "react-modal";
 import UseErrorModel from "../../hooks/useErrorModel";
 import { customModelStyles } from "../../utils/data/data";
-import { successNotify } from "../../utils/toast";
 import PrimaryBtn from "../UI/PrimaryBtn";
 
 function AddPlaylist({ modalIsOpen, setIsOpen }) {
   const [inputPlaylistId, setInputPlaylistId] = useState("");
   const { getPlaylists } = useStoreActions((action) => action.playlist);
-  const { isError } = useStoreState((action) => action.playlist);
-
+  const { isLoading } = useStoreState((action) => action.playlist);
+  console.log(isLoading);
   /// open error
   function closeModal() {
     setIsOpen(false);
@@ -29,7 +28,7 @@ function AddPlaylist({ modalIsOpen, setIsOpen }) {
       if (playlistId.startsWith("PL_")) console.log("inside", playlistId);
       getPlaylists(playlistId);
       setIsOpen(false);
-      successNotify("Successfully added playlist");
+
       return;
     } else if (
       inputPlaylistId.startsWith("PL_") ||
@@ -38,7 +37,7 @@ function AddPlaylist({ modalIsOpen, setIsOpen }) {
       inputPlaylistId.startsWith("LP")
     ) {
       getPlaylists(inputPlaylistId);
-      successNotify("Successfully added playlist");
+
       setIsOpen(false);
     } else {
       ErrorOpenModal();

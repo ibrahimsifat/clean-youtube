@@ -17,17 +17,21 @@ const Navbar = () => {
         <div className="flex justify-end items-center space-x-4">
           {/* <SearchBar /> */}
           {/* <!-- add playlist --> */}
-          {homeRoute && <AddPlaylistBtn />}
-          <a
-            href="https://github.com/ibrahimsifat/clean-youtube"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <ImGithub
-              size={23}
-              className="cursor-pointer border rounded-full mb-1 hover:border-teal-400"
-            />
-          </a>
+          {homeRoute && (
+            <>
+              <AddPlaylistBtn />
+              <a
+                href="https://github.com/ibrahimsifat/clean-youtube"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <ImGithub
+                  size={23}
+                  className="cursor-pointer border rounded-full mb-1 hover:border-teal-400"
+                />
+              </a>
+            </>
+          )}
           <ThemeToggle />
         </div>
       </div>

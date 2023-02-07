@@ -66,12 +66,14 @@ const PlaylistCard = ({ playlist }) => {
         <div className=" dark:bg-gray-900 bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal w-full">
           <div className="mb-8">
             <Link to={`/playlist/${playlistId}`} className="space-y-4">
-              <div className=" font-bold text-md mb-2 h-8 ">
-                {playlistTitle?.slice(0, 90)}
+              <div className=" font-bold text-md mb-2 h-10 ">
+                {layout == "list"
+                  ? playlistTitle?.slice(0, 150)
+                  : playlistTitle?.slice(0, 50)}
               </div>
               {layout == "list" && (
-                <div className=" font-semibold text-md text-gray-600 mb-2">
-                  {playlistDescription?.slice(0, 150)}
+                <div className=" font-semibold text-md text-gray-600 mb-3">
+                  {playlistDescription?.slice(0, 200)}
                 </div>
               )}
             </Link>

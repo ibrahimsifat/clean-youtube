@@ -1,10 +1,15 @@
 import React from "react";
 
-const PrevNextBtn = ({ prev, level }) => {
+const PrevNextBtn = ({ prev, level, demo }) => {
   return (
     <button
       type="button"
-      className={`border-2 border-[#4654A3] dark:text-white py-2 hover:bg-[#4654A3] hover:text-white px-3 duration-200 ${
+      disabled={demo}
+      className={`border-2 ${
+        demo
+          ? "border-[#cad2fb] cursor-not-allowed"
+          : "border-[#4654A3] hover:bg-[#4654A3] hover:text-white"
+      } border-[#4654A3] dark:text-white py-2   px-3 duration-200 ${
         prev ? "rounded-l-lg " : "rounded-r-lg "
       }`}
     >
