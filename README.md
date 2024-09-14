@@ -1,6 +1,7 @@
 # Clean Youtube
   Clean YouTube is a simple and intuitive application built with ReactJS, providing a distraction-free environment for watching YouTube playlists. Say goodbye to irrelevant, sidebar videos and other distractions, and focus solely on the content you want to watch. 
   # [Live Site Link](https://clean-react-youtube.netlify.app)
+  # [Demo Video](https://youtu.be/1NsdczCO3CA)
 
 ## Functionalities
   1. Users Can Add YouTube Playlist by Playlist Id or Playlist Link.
